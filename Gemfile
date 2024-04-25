@@ -33,6 +33,13 @@ gem 'jbuilder', '~> 2.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+# deviseを追加
+gem 'devise'
+# LINEログイン機能を追加
+gem 'omniauth-line'
+gem 'omniauth-rails_csrf_protection'
+# 環境変数を設定
+gem 'dotenv-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
