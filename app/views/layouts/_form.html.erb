@@ -1,4 +1,4 @@
-  収入を入力できます
+  income_form
   <%= form_with model: @income, local: true, html: { multipart: true } do |f| %>
     <div>
       <label>金額　</label><%= f.number_field :price  %>
@@ -11,17 +11,20 @@
     <div>
       <div>
         <%= f.radio_button(:income_category_id, 1) %>
-        <%= f.label :income_category_id, "おこづかい", {value: :income_category_id, style: "display: inline-block;"} %>
+        <%= f.label :income_category_id, "おこづかい", {value: 1, style: "display: inline-block;"} %>
       </div>
       <div>
         <%= f.radio_button(:income_category_id, 2) %>
-        <%= f.label :income_category_id, "おてつだい", {value: :income_category_id, style: "display: inline-block;"} %>
+        <%= f.label :income_category_id, "おてつだい", {value: 2, style: "display: inline-block;"} %>
       </div>
       <div>
         <%= f.radio_button(:income_category_id, 3) %>
-        <%= f.label :income_category_id, "お年玉", {value: :income_category_id, style: "display: inline-block;"} %>
+        <%= f.label :income_category_id, "お年玉", {value: 3, style: "display: inline-block;"} %>
       </div>
-    </div>
+      <div>
+        <%= f.label :image,"写真" %>
+        <%= f.file_field :image %>
+      </div>
 
     <div><%= f.submit "入力する" %></div>
   <% end %>

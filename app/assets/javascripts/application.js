@@ -43,33 +43,3 @@ $(document).on('turbolinks:load', function() {
     let tabName = $(this).data('tab-name'); // タブのデータ属性を取得
   });
 });
-
-// =========
-
-$(document).ready(function() {
-  // タブメニュー要素を取得
-  const tabMenus = $('.tab__menu-item');
-
-  // クリックイベントを設定
-  tabMenus.on('click', function() {
-    const clickedTab = $(this);
-    const tabTargetData = clickedTab.data('tab');
-    const tabList = clickedTab.closest('.tab__menu');
-    const tabItems = tabList.find('.tab__menu-item');
-    const tabPanelItems = tabList.next('.tab__panel').find('.tab__panel-box');
-
-    // 全てのタブからクラスを削除
-    tabItems.removeClass('is-active');
-    tabPanelItems.removeClass('is-show');
-
-    // クリックされたタブにクラスを追加
-    clickedTab.addClass('is-active');
-
-    // 対応するパネルにクラスを追加
-    tabPanelItems.each(function() {
-      if ($(this).data('panel') === tabTargetData) {
-        $(this).addClass('is-show');
-      }
-    });
-  });
-});

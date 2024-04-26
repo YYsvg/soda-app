@@ -10,15 +10,19 @@ outcome_form
     <div>
       <div>
         <%= f.radio_button(:outcome_category_id, 1) %>
-        <%= f.label :outcome_category_id, "食費", {value: :outcome_category_id, style: "display: inline-block;"} %>
+        <%= f.label :outcome_category_id, "食費", {value: 1, style: "display: inline-block;"} %>
       </div>
       <div>
         <%= f.radio_button(:outcome_category_id, 2) %>
-        <%= f.label :outcome_category_id, "文房具", {value: :outcome_category_id, style: "display: inline-block;"} %>
+        <%= f.label :outcome_category_id, "文房具", {value: 2, style: "display: inline-block;"} %>
       </div>
       <div>
         <%= f.radio_button(:outcome_category_id, 3) %>
-        <%= f.label :outcome_category_id, "衣服", {value: :outcome_category_id, style: "display: inline-block;"} %>
+        <%= f.label :outcome_category_id, "衣服", {value: 3, style: "display: inline-block;"} %>
+      </div>
+      <div>
+        <%= f.label :image,"写真" %>
+        <%= f.file_field :image %>
       </div>
     </div>
 
