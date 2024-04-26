@@ -7,6 +7,7 @@ class IncomesController < ApplicationController
 
   def show
     @income = Income.find(params[:id])
+    @user = @income.user
   end
 
   def new
@@ -15,11 +16,9 @@ class IncomesController < ApplicationController
   end
 
   def create
-    @income =Income.new(income_params)
-  
+    @income = Income.new(income_params)
     @income.save
     redirect_to @income
-    
   end
 
   def edit

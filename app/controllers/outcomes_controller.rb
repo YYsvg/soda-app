@@ -16,6 +16,9 @@ class OutcomesController < ApplicationController
 
   def create
     @outcome = Outcome.new(outcome_params)
+    # @outcome = current_user.outcomes.build(outcome_params) 
+    # 変更後（new も使えるらしい。が、慣習的にbuildを使うらしい）
+    # @report = current_user.reports.new(report_params) 
     @outcome.save
     redirect_to @outcome
   end
@@ -23,6 +26,6 @@ class OutcomesController < ApplicationController
   private
 
   def outcome_params
-    params.require(:outcome).permit(:memo,:price,:outcome_category,:outcome_category_id)
+    params.require(:outcome).permit(:memo,:price,:image,:outcome_category_id,:user_id)
   end
 end

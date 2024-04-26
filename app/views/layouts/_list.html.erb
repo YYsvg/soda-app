@@ -1,6 +1,5 @@
 outcome_form
-<%= form_with(model: @outcome, url: outcomes_path, local: true) do |f| %>
-
+<%= form_with model: @outcome, local: true, html: { multipart: true } do |f| %>
     <div>
       <label>金額　</label><%= f.number_field :price  %>
     </div>

@@ -24,7 +24,7 @@
       <% @outcomes.each do |outcome| %>
         <tr>
           <th scope="row">◎</th>
-          <td><%= outcome.income_category_id %></td>
+          <td><%= outcome.outcome_category_id %></td>
           <td><%= outcome.price %></td>
           <td><%= outcome.memo %></td>
           <td><%= link_to "詳細", outcome_path(outcome), class: "btn btn-primary btn-sm" %></td>
