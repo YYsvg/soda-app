@@ -1,0 +1,40 @@
+<div class="mx-auto" style="width: 400px;">
+<% pagename = "収入の一覧" %>
+  <h1 class="card-title"><%= pagename %></h1>
+
+<div class="card-title">
+  <% @income_categories.each do |income_category| %>
+    <%= link_to income_category.name, new_income_path,id: @income_categories %>
+  <% end %>
+ </div>
+
+<br><br>
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>カテゴリー</th>
+        <th>金額(円)</th>
+        <th>内容</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @incomes.each do |income| %>
+        <tr>
+          <th scope="row">◎</th>
+          <td><%= income.income_category_id %></td>
+          <td><%= income.price %></td>
+          <td><%= income.memo %></td>
+          <td><%= link_to "詳細", income_path(income), class: "btn btn-primary btn-sm" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div>
+    <%= link_to "トップページへ戻る", root_path %>
+  </div>
+</div>
+

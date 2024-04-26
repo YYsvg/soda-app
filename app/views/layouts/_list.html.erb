@@ -1,0 +1,30 @@
+outcome_form
+<%= form_with(model: @outcome, url: outcomes_path, local: true) do |f| %>
+
+    <div>
+      <label>金額　</label><%= f.number_field :price  %>
+    </div>
+    <div>
+      <label>メモ　 </label><%= f.text_field :memo %>
+    </div>
+    <div>
+      <div>
+        <%= f.radio_button(:outcome_category_id, 1) %>
+        <%= f.label :outcome_category_id, "食費", {value: :outcome_category_id, style: "display: inline-block;"} %>
+      </div>
+      <div>
+        <%= f.radio_button(:outcome_category_id, 2) %>
+        <%= f.label :outcome_category_id, "文房具", {value: :outcome_category_id, style: "display: inline-block;"} %>
+      </div>
+      <div>
+        <%= f.radio_button(:outcome_category_id, 3) %>
+        <%= f.label :outcome_category_id, "衣服", {value: :outcome_category_id, style: "display: inline-block;"} %>
+      </div>
+    </div>
+
+    <div><%= f.submit "入力する" %></div>
+  <% end %>
+
+  <div>
+    <%= link_to "支出の一覧へ", :outcomes %>
+  </div>

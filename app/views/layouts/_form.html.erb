@@ -1,0 +1,31 @@
+  収入を入力できます
+  <%= form_with model: @income, local: true, html: { multipart: true } do |f| %>
+    <div>
+      <label>金額　</label><%= f.number_field :price  %>
+    </div>
+    <div>
+      <label>メモ　 </label><%= f.text_field :memo %>
+    </div>
+    <div>
+      
+    <div>
+      <div>
+        <%= f.radio_button(:income_category_id, 1) %>
+        <%= f.label :income_category_id, "おこづかい", {value: :income_category_id, style: "display: inline-block;"} %>
+      </div>
+      <div>
+        <%= f.radio_button(:income_category_id, 2) %>
+        <%= f.label :income_category_id, "おてつだい", {value: :income_category_id, style: "display: inline-block;"} %>
+      </div>
+      <div>
+        <%= f.radio_button(:income_category_id, 3) %>
+        <%= f.label :income_category_id, "お年玉", {value: :income_category_id, style: "display: inline-block;"} %>
+      </div>
+    </div>
+
+    <div><%= f.submit "入力する" %></div>
+  <% end %>
+  <div>
+    <%= link_to "収入の一覧へ", :incomes %>
+    <%= link_to "トップページへ", root_path %>
+  </div>
