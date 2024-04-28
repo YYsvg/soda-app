@@ -1,4 +1,4 @@
-<div class="mx-auto" style="width: 400px;">
+<div class="mx-auto" style="width: 700px;">
 <% pagename = "収入の一覧" %>
   <h1 class="card-title"><%= pagename %></h1>
 
@@ -27,6 +27,7 @@
           <td><%= income.income_category_id %></td>
           <td><%= income.price %></td>
           <td><%= income.memo %></td>
+          <td><%= image_tag income.image.thumb50.url %>
           <td><%= link_to "詳細", income_path(income), class: "btn btn-primary btn-sm" %></td>
         </tr>
       <% end %>

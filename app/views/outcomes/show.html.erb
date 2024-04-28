@@ -1,0 +1,16 @@
+<div class="mx-auto" style="width: 300px;">
+  <h1>支出の記録</h1>
+
+  <br>
+
+  <p>メモ  <%= @outcome.memo %></p>
+  <p>¥    <%= @outcome.price %></p>
+  <br>
+
+  <div>
+    <%= image_tag @outcome.image.thumb.url%>
+  </div>
+
+  <br>
+  <%= link_to "トップページへ戻る", root_path, class: "btn btn-primary" %>
+</div>

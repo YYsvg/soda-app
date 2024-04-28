@@ -1,5 +1,5 @@
   income_form
-  <%= form_with model: @income, local: true, html: { multipart: true } do |f| %>
+  <%= form_with model: @income, local: true do |f| %>
     <div>
       <label>金額　</label><%= f.number_field :price  %>
     </div>
@@ -28,6 +28,7 @@
 
     <div><%= f.submit "入力する" %></div>
   <% end %>
+
   <div>
     <%= link_to "収入の一覧へ", :incomes %>
     <%= link_to "トップページへ", root_path %>

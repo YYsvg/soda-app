@@ -1,12 +1,15 @@
 <div class="mx-auto" style="width: 300px;">
-  <h1>詳細画面</h1>
+  <h1>収入の記録</h1>
 
   <br>
 
   <p>メモ  <%= @income.memo %></p>
-  <p>¥  <%= @income.price %></p>
-  <% @income.user %>
+  <p>¥    <%= @income.price %></p>
   <br>
+
+  <div>
+    <%= image_tag @income.image.thumb.url%>
+  </div>
 
   <br>
   <%= link_to "トップページへ戻る", root_path, class: "btn btn-primary" %>

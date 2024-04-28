@@ -1,5 +1,5 @@
 outcome_form
-<%= form_with model: @outcome, local: true, html: { multipart: true } do |f| %>
+<%= form_with model: @outcome, local: true do |f| %>
     <div>
       <label>金額　</label><%= f.number_field :price  %>
     </div>
@@ -26,8 +26,9 @@ outcome_form
     </div>
 
     <div><%= f.submit "入力する" %></div>
-  <% end %>
+<% end %>
 
-  <div>
-    <%= link_to "支出の一覧へ", :outcomes %>
-  </div>
+<div>
+  <%= link_to "支出の一覧へ", :outcomes %>
+  <%= link_to "トップページへ", root_path %>
+</div>
