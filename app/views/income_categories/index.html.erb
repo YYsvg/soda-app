@@ -1,0 +1,37 @@
+<div class="mx-auto" style="width: 700px;">
+<% pagename = "カテゴリの一覧" %>
+  <h1 class="card-title"><%= pagename %></h1>
+
+<br><br>
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>カテゴリー名</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @income_categories.each do |income_category| %>
+        <tr>
+          <td><%= income_category[:id] %></td>
+          <td><%= income_category.name %></td>
+          <td><%= link_to "詳細", income_category_path(income_category), class: "btn btn-primary btn-sm" %></td>
+          <td><%= link_to "編集", edit_income_category_path(income_category.id) %></td>
+          <td><%= link_to "削除", income_category_path(income_category.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div>
+    <%= link_to "トップページへ戻る", root_path %>
+  </div>
+
+
+
+</div>
+
+
+
+

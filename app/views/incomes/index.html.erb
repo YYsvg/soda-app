@@ -2,12 +2,6 @@
 <% pagename = "収入の一覧" %>
   <h1 class="card-title"><%= pagename %></h1>
 
-<div class="card-title">
-  <% @income_categories.each do |income_category| %>
-    <%= link_to income_category.name, new_income_path,id: @income_categories %>
-  <% end %>
- </div>
-
 <br><br>
 
 <table class="table table-hover">
@@ -23,12 +17,14 @@
     <tbody>
       <% @incomes.each do |income| %>
         <tr>
-          <th scope="row">◎</th>
-          <td><%= income.income_category_id %></td>
+          <td><%= income[:id] %></td>
+          <td><%= income.income_category.name %></td>
           <td><%= income.price %></td>
           <td><%= income.memo %></td>
           <td><%= image_tag income.image.thumb50.url %>
           <td><%= link_to "詳細", income_path(income), class: "btn btn-primary btn-sm" %></td>
+          <td><%= link_to "編集", edit_income_path(income.id) %></td>
+          <td><%= link_to "削除", income_path(income.id), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
         </tr>
       <% end %>
     </tbody>
@@ -37,5 +33,11 @@
   <div>
     <%= link_to "トップページへ戻る", root_path %>
   </div>
+
+
+
 </div>
+
+
+
 

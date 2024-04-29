@@ -1,0 +1,15 @@
+<%= form_with model: @income_category, local: true do |f| %>
+    <div>
+      <%= f.label :選択したカテゴリ名 %>
+      <%= "#{@income_category.name}" %><br>
+      <%= f.label :新しいカテゴリ名を入力してください %>
+      <%= f.text_field :name %>
+    </div>
+
+    <%= f.submit "更新する",data: { confirm: '上記の内容で投稿を更新します。よろしいですか？' } %>
+<% end %>
+
+<div>
+  <%= link_to "トップページへ", root_path %>
+</div>
+

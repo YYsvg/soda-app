@@ -1,0 +1,2 @@
+module OutcomeCategoryHelper
+end

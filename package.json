@@ -1,5 +1,7 @@
 {
   "name": "soda",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "chart.js": "^4.4.2"
+  }
 }

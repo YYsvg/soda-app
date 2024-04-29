@@ -1,5 +1,5 @@
 <div class="mx-auto" style="width: 300px;">
-  <% pagename = "収入の入力画面" %>
+  <% pagename = "収入の編集画面" %>
   <h1><%= pagename %></h1>
 
   <%= form_with model: @income, local: true, html: { multipart: true } do |f| %>
@@ -24,6 +24,7 @@
         <%= f.label :income_category_id, "お年玉", {value: 3, style: "display: inline-block;"} %>
       </div>
     </div>
+
     <div>
       <%= f.label :image,"写真" %>
       <%= f.file_field :image %>

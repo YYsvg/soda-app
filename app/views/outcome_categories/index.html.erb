@@ -1,0 +1,35 @@
+<div class="mx-auto" style="width: 700px;">
+<% pagename = "カテゴリの一覧" %>
+  <h1 class="card-title"><%= pagename %></h1>
+
+<br><br>
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>カテゴリー名</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @outcome_categories.each do |outcome_category| %>
+        <tr>
+          <td><%= outcome_category[:id] %></td>
+          <td><%= outcome_category.name %></td>
+          <td><%= link_to "詳細", outcome_category_path(outcome_category), class: "btn btn-primary btn-sm" %></td>
+          <td><%= link_to "編集", edit_outcome_category_path(outcome_category.id) %></td>
+          <td><%= link_to "削除", outcome_category_path(outcome_category.id), method: :delete, data: { confirm: '削除しますか?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div>
+    <%= link_to "トップページへ戻る", root_path %>
+  </div>
+</div>
+
+
+
+
+

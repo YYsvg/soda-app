@@ -1,5 +1,9 @@
-outcome_form
-<%= form_with model: @outcome, local: true do |f| %>
+<div class="mx-auto" style="width: 300px;">
+  <% pagename = "支出の編集画面" %>
+  <h1><%= pagename %></h1>
+
+  <%= form_with model: @outcome, local: true do |f| %>
+  
     <div>
       <label>金額　</label><%= f.number_field :price  %>
     </div>
@@ -19,16 +23,19 @@ outcome_form
         <%= f.radio_button(:outcome_category_id, 3) %>
         <%= f.label :outcome_category_id, "衣服", {value: 3, style: "display: inline-block;"} %>
       </div>
-      <div>
-        <%= f.label :image,"写真" %>
-        <%= f.file_field :image %>
-      </div>
+    </div>
+
+    <div>
+      <%= f.label :image,"写真" %>
+      <%= f.file_field :image %>
     </div>
 
     <div><%= f.submit "入力する" %></div>
-<% end %>
+  <% end %>
 
-<div>
-  <%= link_to "支出の一覧へ", :outcomes %>
-  <%= link_to "カテゴリの作成、編集、削除", :new_outcome_category %>
-</div>
+  <div>
+    <%= link_to "支出の一覧へ", :outcomes %>
+  </div>
+  <div>
+    <%= link_to "トップページへ戻る", root_path %>
+  </div>

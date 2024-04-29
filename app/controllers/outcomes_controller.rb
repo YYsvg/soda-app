@@ -5,13 +5,14 @@ class OutcomesController < ApplicationController
     @outcome_category_names = OutcomeCategory.category_names
   end
 
-  def show
-    @outcome = Outcome.find(params[:id])
-  end
-
   def new
     @outcome = Outcome.new
     @outcome_categories = OutcomeCategory.all
+  end
+
+  def show
+    @outcome = Outcome.find(params[:id])
+    @user = @outcome.user
   end
 
   def create
@@ -21,6 +22,25 @@ class OutcomesController < ApplicationController
     # @report = current_user.reports.new(report_params) 
     @outcome.save
     redirect_to @outcome
+  end
+
+  def destroy
+    @outcome = Outcome.find(params[:id])
+    @outcome.destroy
+    redirect_to outcomes_path, notice:"削除しますか？"
+  end
+
+  def edit
+    @outcome = Outcome.find(params[:id])
+  end
+
+  def update
+    @outcome = Outcome.find(params[:id])
+    if @outcome.update(outcome_params)
+      redirect_to outcomes_path, notice: "編集しました"
+    else
+      rendern'edit'
+    end
   end
 
   private

@@ -1,0 +1,15 @@
+カテゴリの作成
+
+<%= form_with model: @outcome_category, local: true do |f| %>
+    <div>
+      <label>カテゴリー名</label><%= f.text_field :name %>
+    </div>
+    <%= f.submit "作成する" %>
+<% end %>
+
+
+<div>
+  <p>編集、削除は一覧ページから</p>
+  <%= link_to "一覧へ", outcome_categories_path %>
+  <%= link_to "トップページへ", root_path %>
+</div>

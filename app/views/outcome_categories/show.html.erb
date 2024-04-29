@@ -1,0 +1,12 @@
+<div class="mx-auto" style="width: 300px;">
+  <h1>カテゴリの内容</h1>
+
+  <br>
+
+    <%= @outcome_category.name %>
+
+  <div>
+    <%= link_to "一覧へ", outcome_categories_path %>
+    <%= link_to "トップページへ戻る", root_path, class: "btn btn-primary" %>
+  </div>
+</div>
