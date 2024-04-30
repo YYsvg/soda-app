@@ -4,18 +4,18 @@ class IncomesController < ApplicationController
     @income_categories = IncomeCategory.all
   end
 
-  def new
-    @income = Income.new
-    @income_categories = IncomeCategory.all
-  end
-
   def show
     @income = Income.find(params[:id])
     @user = @income.user
   end
 
+  def new
+    @income = current_user.income.new
+    @income_categories = IncomeCategory.all
+  end
+
   def create
-    @income = Income.new(income_params)
+    @income = current_user.incomes.new(income_params)
     @income.save
     redirect_to @income
   end

@@ -6,22 +6,22 @@ class OutcomesController < ApplicationController
   end
 
   def new
-    @outcome = Outcome.new
+    @outcome = current_user.outcome.new
     @outcome_categories = OutcomeCategory.all
   end
 
-  def show
-    @outcome = Outcome.find(params[:id])
-    @user = @outcome.user
-  end
-
   def create
-    @outcome = Outcome.new(outcome_params)
+    @outcome = current_user.outcomes.new(outcome_params)
     # @outcome = current_user.outcomes.build(outcome_params) 
     # 変更後（new も使えるらしい。が、慣習的にbuildを使うらしい）
     # @report = current_user.reports.new(report_params) 
     @outcome.save
     redirect_to @outcome
+  end
+
+  def show
+    @outcome = Outcome.find(params[:id])
+    @user = @outcome.user
   end
 
   def destroy
