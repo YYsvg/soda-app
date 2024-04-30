@@ -1,0 +1,16 @@
+<div class="mx-auto" style="width: 300px;">
+  <h1>やりたいこと</h1>
+
+  <br>
+
+  <p>内容  <%= @want.memo %></p>
+  
+  <br>
+
+  <div>
+    <%= image_tag @want.image.thumb.url%>
+  </div>
+
+  <br>
+  <%= link_to "トップページへ戻る", root_path, class: "btn btn-primary" %>
+</div>

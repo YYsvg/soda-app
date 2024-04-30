@@ -1,0 +1,26 @@
+<div class="mx-auto" style="width: 400px;">
+  <% pagename = "これからやりたいことの入力画面" %>
+  <h1><%= pagename %></h1>
+
+  <%= form_with model: @want, local: true do |f| %>
+  
+    <div>
+      <%= f.label :memo,"メモ" %>
+      <%= f.text_field :memo  %>
+    </div>
+
+    <div>
+      <%= f.label :image,"写真" %>
+      <%= f.file_field :image %>
+    </div>
+
+    <div><%= f.submit "入力する" %></div>
+  <% end %>
+
+  <div>
+    <%= link_to "やりたいことの一覧へ", :wants %>
+    <%= link_to "作成、編集、削除", :new_want %>
+  </div>
+  <div>
+    <%= link_to "トップページへ戻る", root_path %>
+  </div>

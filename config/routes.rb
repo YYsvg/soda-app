@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  get 'outcome_category/index'
-  get 'outcome_category/new'
-  get 'outcome_category/edit'
+
   devise_for :users, controllers: {
     omniauth_callbacks: "omniauth_callbacks"
   }
@@ -11,5 +9,7 @@ Rails.application.routes.draw do
   resources :outcomes
   resources :income_categories
   resources :outcome_categories
+  resources :wants
+
 
 end

@@ -21,7 +21,6 @@ class OutcomesController < ApplicationController
 
   def show
     @outcome = Outcome.find(params[:id])
-    @user = @outcome.user
   end
 
   def destroy

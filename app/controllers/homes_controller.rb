@@ -2,7 +2,8 @@ class HomesController < ApplicationController
   def index
     @income = Income.new
     @outcome = Outcome.new
-
+    @want = Want.new
+    
     @income_category = IncomeCategory.new
     @outcome_category = OutcomeCategory.new
 
