@@ -2,22 +2,23 @@
   <div class="card">
     <div class="card-body">
       <h4 class="card-title">おこづかい帳アプリ</h4>
-          <ul class="tab-list list-unstyled">
-            <li class="tab tab-active">
-              <%= @outcomename %>
-            </li>
-            <li class="tab">
-              <%= @incomename %>
-            </li>
-          </ul>
+        <ul class="tab-list list-unstyled">
+          <li class="tab tab-active">
+            <%= @outcomename %>
+          </li>
+          <li class="tab">
+            <%= @incomename %>
+          </li>
+        </ul>
       <h5 class="card-text">
-    <div class="tabbox-contents">
-      <div class="tabbox box-show">
-        <%= render 'layouts/list' %>
+      <div>
+        <div class="tabbox box-show">
+          <%= render 'layouts/list' %>
+        </div>
+        <div class="tabbox">
+          <%= render 'layouts/form' %>
+        </div>
       </div>
-      <div class="tabbox">
-        <%= render 'layouts/form' %>
-      </div>
-    <div>
+    </div>
   </div>
 </div>

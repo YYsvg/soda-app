@@ -39,7 +39,7 @@ class OutcomesController < ApplicationController
     if @outcome.update(outcome_params)
       redirect_to outcomes_path, notice: "編集しました"
     else
-      rendern'edit'
+      render'edit'
     end
   end
 

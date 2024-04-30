@@ -22,24 +22,22 @@
 // タブの切り替え
 // turbolinksの無効化
 $(document).on('turbolinks:load', function() {
-  $(function() {
-    // .tabがクリックされたときを指定
-    $('.tab').click(function(){
-      // 今ある.tab-activeを削除
-      $('.tab-active').removeClass('tab-active');
-      // クリックされた.tabに.tab-activeを追加
-      $(this).addClass('tab-active');
+$(function() {
+  // .tabがクリックされたときを指定
+  $('.tab').click(function(){
+    // 今ある.tab-activeを削除
+    $('.tab-active').removeClass('tab-active');
+    // クリックされた.tabに.tab-activeを追加
+    $(this).addClass('tab-active');
 
-      // 今ある.box-showを削除
-      $('.box-show').removeClass('box-show');
-      // indexに.tabのindex番号を代入
-      const index = $(this).index();
-      // .tabboxとindexの番号が同じ要素に.box-showを追加
-      $('.tabbox').eq(index).addClass('box-show');
-    });
-
-    // タブが選択された時の特定の処理を追加する
-    // @outcomename がタブで選択された場合の条件分岐
-    let tabName = $(this).data('tab-name'); // タブのデータ属性を取得
+    // 今ある.box-showを削除
+    $('.box-show').removeClass('box-show');
+    
+    // indexに.tabのindex番号を代入
+    const index = $(this).index();
+    // .tabboxとindexの番号が同じ要素に.box-showを追加
+    $('.tabbox').eq(index).addClass('box-show');
+    
   });
+});
 });

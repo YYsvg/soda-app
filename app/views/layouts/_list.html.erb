@@ -1,30 +1,26 @@
-outcome_form
+<p>outcome_form</p>
 <%= form_with model: @outcome, local: true do |f| %>
     <div>
-      <label>金額　</label><%= f.number_field :price  %>
+      <%= f.label :price,"金額" %>
+      <%= f.number_field :price  %>
     </div>
     <div>
-      <label>メモ　 </label><%= f.text_field :memo %>
+      <%= f.label :memo,"メモ" %>
+      <%= f.text_field :memo %>
     </div>
     <div>
+      <% @outcome_categories.each do |outcome_category| %>
       <div>
-        <%= f.radio_button(:outcome_category_id, 1) %>
-        <%= f.label :outcome_category_id, "食費", {value: 1, style: "display: inline-block;"} %>
+        <%= f.radio_button(:outcome_category_id, "#{outcome_category.id}" ) %>
+        <%= f.label :outcome_category_id, "#{outcome_category.name}", {value: outcome_category.id.to_i, style: "display: inline-block;"} %>
       </div>
-      <div>
-        <%= f.radio_button(:outcome_category_id, 2) %>
-        <%= f.label :outcome_category_id, "文房具", {value: 2, style: "display: inline-block;"} %>
-      </div>
-      <div>
-        <%= f.radio_button(:outcome_category_id, 3) %>
-        <%= f.label :outcome_category_id, "衣服", {value: 3, style: "display: inline-block;"} %>
-      </div>
-      <div>
-        <%= f.label :image,"写真" %>
-        <%= f.file_field :image %>
-      </div>
+      <% end %>
     </div>
 
+    <div>
+      <%= f.label :image,"写真" %>
+      <%= f.file_field :image %>
+    </div>
     <div><%= f.submit "入力する" %></div>
 <% end %>
 
@@ -32,3 +28,4 @@ outcome_form
   <%= link_to "支出の一覧へ", :outcomes %>
   <%= link_to "カテゴリの作成、編集、削除", :new_outcome_category %>
 </div>
+

@@ -28,8 +28,12 @@ body {
   background-color: #FCF9F1;
 }
 
+// ＝＝＝＝
+// home画面　タブ表示
+// ＝＝＝＝
+
 .card {
-  height: 70vh;
+  height: 90vh;
 }
 .card-title,.card-text {
   text-align: center;
@@ -62,14 +66,20 @@ body {
   display: none;
   padding: 15px;
 }
- // box-showクラスのものだけ表示
-.box-show {
-  display: block;
-}
+
+
  // hover時のアクション
 .tab:hover{
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
   transform: translateY(-1px);
 }
 
+ // box-showクラスのものだけ表示
+ .box-show {
+  display: block;
+}
+
+.grap {
+  text-align: center;
+}
 

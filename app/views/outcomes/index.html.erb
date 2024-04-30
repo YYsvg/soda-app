@@ -32,11 +32,12 @@
 
 </div>
 
-
-<canvas id="myChart" width="200" height="200"></canvas>
+<p class="graph">グラフで表示</p>
+<canvas id="myChart" width="200" height="100"></canvas>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 var ctx = document.getElementById('myChart');
+
 var myChart = new Chart(ctx, {
     type: 'pie',
     data: {
@@ -86,6 +87,8 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>
+
+
 
   <div>
     <%= link_to "トップページへ戻る", root_path %>
