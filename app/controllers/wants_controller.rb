@@ -1,4 +1,6 @@
 class WantsController < ApplicationController
+  before_action :authenticate
+  
   def index
     @wants = Want.all
   end

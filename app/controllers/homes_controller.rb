@@ -1,4 +1,6 @@
 class HomesController < ApplicationController
+  before_action :authenticate
+  
   def index
     @income = Income.new
     @outcome = Outcome.new

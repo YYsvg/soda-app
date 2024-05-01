@@ -1,4 +1,6 @@
 class IncomesController < ApplicationController
+  before_action :authenticate
+  
   def index
     @incomes = Income.all
     @income_categories = IncomeCategory.all

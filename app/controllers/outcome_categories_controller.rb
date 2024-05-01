@@ -1,4 +1,6 @@
 class OutcomeCategoriesController < ApplicationController
+  before_action :authenticate
+  
   def index
     @outcome_categories = OutcomeCategory.all
   end
