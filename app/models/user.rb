@@ -32,4 +32,12 @@ class User < ApplicationRecord
   def admin?
     role == true
   end
+
+  scope :user_roles, -> {
+    {true: "おうち",false: "利用者"}
+  }
+
+  scope :update_days_sqlite, -> { user.group("strftime('%Y-%m-%d', updated_at, '+09:00')").pluck(:updated_at) }
+  scope :update_days_mysql, -> { user.group("date_format(updated_at + interval 9 hour, '%Y-%m-%d')").pluck(:updated_at) }
+
 end
