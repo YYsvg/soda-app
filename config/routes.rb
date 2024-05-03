@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  devise_for :users, controllers: {
+    omniauth_callbacks: "omniauth_callbacks"
+  }
+
   namespace :admin do
     devise_scope :user do
       get 'login', to: 'sessions#new'
@@ -10,10 +14,6 @@ Rails.application.routes.draw do
     resources :dashboard, only: [:index]
     root to: 'dashboard#index'
   end
-
-  devise_for :users, controllers: {
-    omniauth_callbacks: "omniauth_callbacks"
-  }
 
   root :to =>  "homes#index"
   resources :incomes
