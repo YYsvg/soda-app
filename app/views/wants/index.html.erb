@@ -6,22 +6,29 @@
 
 <table class="table table-hover">
     <thead>
-      <tr>
+      <tr class="th">
         <th>No</th>
         <th>内容</th>
+        <th></th>
+        <th></th>
+        <th></th>
         <th></th>
       </tr>
     </thead>
     <tbody>
       <% @wants.each do |want| %>
-        <tr>
-          <td><%= want[:id] %></td>
-          <td><%= want.memo %></td>
-          <td><%= image_tag want.image.thumb50.url %>
-          <td><%= link_to "詳細", want_path(want), class: "btn btn-primary btn-sm" %></td>
-          <td><%= link_to "編集", edit_want_path(want.id) %></td>
-          <td><%= link_to "削除", want_path(want.id), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
-        </tr>
+        <% if want.user_id == current_user.id %>
+          <tr class="th">
+            <td><%= want[:id] %></td>
+            <td><%= want.memo %></td>
+            <td><%= image_tag want.image.thumb50.url %>
+            <td><%= link_to "詳細", want_path(want), class: "btn btn-primary btn-sm" %></td>
+            <td><%= link_to "編集", edit_want_path(want.id) %></td>
+            <td><%= link_to "削除", want_path(want.id), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+          </tr>
+        <% else %>
+          <tr></tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>

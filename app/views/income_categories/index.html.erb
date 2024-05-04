@@ -6,14 +6,18 @@
 
 <table class="table table-hover">
     <thead>
-      <tr>
+      <tr class="th">
         <th>No</th>
         <th>カテゴリー名</th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
+
     <tbody>
       <% @income_categories.each do |income_category| %>
-        <tr>
+        <tr class="th">
           <td><%= income_category[:id] %></td>
           <td><%= income_category.name %></td>
           <td><%= link_to "詳細", income_category_path(income_category), class: "btn btn-primary btn-sm" %></td>

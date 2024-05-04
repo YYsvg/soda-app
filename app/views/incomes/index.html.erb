@@ -6,26 +6,35 @@
 
 <table class="table table-hover">
     <thead>
-      <tr>
+      <tr class="th">
         <th>No</th>
         <th>カテゴリー</th>
         <th>金額(円)</th>
         <th>内容</th>
         <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
+
     <tbody>
+
       <% @incomes.each do |income| %>
-        <tr>
-          <td><%= income[:id] %></td>
-          <td><%= income.income_category.name %></td>
-          <td><%= income.price %></td>
-          <td><%= income.memo %></td>
-          <td><%= image_tag income.image.thumb50.url %>
-          <td><%= link_to "詳細", income_path(income), class: "btn btn-primary btn-sm" %></td>
-          <td><%= link_to "編集", edit_income_path(income.id) %></td>
-          <td><%= link_to "削除", income_path(income.id), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
-        </tr>
+        <% if income.user_id == current_user.id %>
+          <tr class="th">
+            <td><%= income[:id] %></td>
+            <td><%= income.income_category.name %><%= income.user_id %></td>
+            <td><%= income.price.to_s(:delimited) %></td>
+            <td><%= income.memo %></td>
+            <td><%= image_tag income.image.thumb50.url %>
+            <td><%= link_to "詳細", income_path(income), class: "btn btn-primary btn-sm" %></td>
+            <td><%= link_to "編集", edit_income_path(income.id) %></td>
+            <td><%= link_to "削除", income_path(income.id), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+          </tr>
+        <% else %>
+          <tr></tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>

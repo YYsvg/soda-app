@@ -33,7 +33,7 @@ body {
 // ＝＝＝＝
 
 .card {
-  height: 90vh;
+  height: 95vh;
 }
 .card-title,.card-text {
   text-align: center;
@@ -83,3 +83,15 @@ body {
   text-align: center;
 }
 
+// 
+
+.td {
+  text-align: right;
+}
+.th {
+  text-align: center;
+}
+
+.coment {
+  margin: 10px auto;
+}

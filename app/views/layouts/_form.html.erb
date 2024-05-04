@@ -1,4 +1,3 @@
-  <p>income_form</p>
   <%= form_with model: @income, local: true do |f| %>
     <div>
       <%= f.label :price,"金額" %>
@@ -23,9 +22,8 @@
     <div><%= f.submit "入力する" %></div>
   <% end %>
 
-  <div>
-    <%= link_to "収入の一覧へ", :incomes %>
-    <%= link_to "カテゴリの作成、編集、削除", :new_income_category %>
-    <br>
-    <%= link_to "やりたいことリストへ", :wants %>
+  <div class="coment">
+    <p><%= link_to "収入の一覧へ", :incomes %></p>
+    <p><%= link_to "カテゴリの作成、編集、削除", :new_income_category %></p>
+    <p><%= link_to "やりたいことリストへ", :wants %></p>
   </div>

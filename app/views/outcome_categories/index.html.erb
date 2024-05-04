@@ -6,14 +6,17 @@
 
 <table class="table table-hover">
     <thead>
-      <tr>
+      <tr class="th">
         <th>No</th>
         <th>カテゴリー名</th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <% @outcome_categories.each do |outcome_category| %>
-        <tr>
+        <tr class="th">
           <td><%= outcome_category[:id] %></td>
           <td><%= outcome_category.name %></td>
           <td><%= link_to "詳細", outcome_category_path(outcome_category), class: "btn btn-primary btn-sm" %></td>
