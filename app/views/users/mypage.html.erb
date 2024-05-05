@@ -1,0 +1,105 @@
+<div>
+<hr>
+
+<h1>マイページ</h1>
+
+<hr>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>項目</th>
+      <th>金額</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>月の収支</td>
+      <td>
+      <% @incomes.each do |income| %>
+        <% if income.user_id == current_user.id %>
+          <%= income.price.to_s(:delimited) %>
+        <% else %>
+          ありません
+        <% end %>
+      <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>収入の合計</td>
+      <td>
+        <% @income_total.each do |user_id, total_price| %>
+          <% if user_id == current_user.id %>
+            <%= total_price.to_s(:delimited) %>円
+          <% end %>
+        <% end %>
+      <td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>支出の合計</td>
+      <td>
+        <% @outcome_total.each do |user_id, total_price| %>
+          <% if user_id == current_user.id %>
+            <%= total_price.to_s(:delimited) %>円
+          <% end %>
+        <% end %>
+      <td>
+    </tr>
+
+    <tr>
+      <th scope="row">3</th>
+      <td>残高</td>
+      <td>
+       
+      <td>
+    </tr>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+<%= @users.each {|user| user} %>
+<%= @incomes.each {|income| income} %>
+
+
+</div>
+<div>
+  <label>年の収支</label>
+
+</div>
+
+<div>
+  <label>プレゼント用</label>
+</div>
+
+<div>
+  <label>やりたいこと用</label>
+</div>
+
+<div>
+<p><%= %></p>
+
+
+
+
+
+
+</div>
+
+
+
+<div>
+    <div><%= link_to "ユーザー情報の編集画面", mypage_edit_users_path %></div>
+<div>
+
+<div>
+  <%= link_to "トップページへもどる", homes_path %>
+</div>
