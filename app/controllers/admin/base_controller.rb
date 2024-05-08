@@ -8,7 +8,7 @@ class Admin::BaseController < ApplicationController
 
   def check_admin
     unless current_user&.admin?
-      redirect_to root_path, alert: '権限がありません。'
+      redirect_to homes_path, alert: '権限がありません。'
     end
   end
 end

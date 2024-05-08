@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
   devise_for :users, controllers: {
+    # LINEログインできる
     omniauth_callbacks: "omniauth_callbacks"
   }
 
+  # 管理者ログインできる
   namespace :admin do
     devise_scope :user do
       get 'login',      to:    'sessions#new'
@@ -14,6 +16,7 @@ Rails.application.routes.draw do
     resources :dashboard, only: [:index]
     root to: 'dashboard#index'
   end
+  
 
   resources :users, only:[:edit, :update] do
     collection do

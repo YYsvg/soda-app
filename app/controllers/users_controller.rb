@@ -1,31 +1,36 @@
 class UsersController < ApplicationController
+  # before_action :authenticate_admin!
   before_action :authenticate
   before_action :set_user
-  
-  def index
-
-  
-  end
-
-  def show
-    @user = User.find(params[:id])
-    @incomes = @user.incomes
-  end
-
-  def update
-    @user.update_without_password(user_params)
-    redirect_to  mypage_users_url
-  end
 
   def mypage
+    @users = User.all
     @incomes = Income.all
     @outcomes = Outcome.all
-    # @income = Income.find(params[:id])
-    @users = User.all
+
     @income_total = Income.group(:user_id).sum(:price)
+    
+    @income_month = Income.group("strftime('%Y-%m', created_at)").count
+    # @income_month = Income.group("strftime('%Y-%m', created_at)").pluck("strftime('%Y-%m', created_at)", :created_at)
+
+
+    @income_totals_by_month = Income.group("strftime('%Y-%m', created_at), user_id").sum(:price)
+    
+
+    # monthly_total = income_total.all_month
+    # @user = User.find(params[:id])
+    # @income = Income.find(params[:id])
+
+    # @monthly_tolal = @daily_records.where(date: @income.all_month).sum(:price)
+    @monthly_totals = Income.all.group_by { |income| income.created_at.beginning_of_month }.transform_values { |incomes| incomes.sum(&:price) }
+
+    # 年ごとの合計を計算
+    @yearly_totals = Income.all.group_by { |income| income.created_at.beginning_of_year }.transform_values { |incomes| incomes.sum(&:price) }
     @outcome_total = Outcome.group(:user_id).sum(:price)
     @balance = 0
     # amount = @income_total - @outcome_total
+    @total = Income.sum(:price)
+
   end
 
   def edit
@@ -41,6 +46,3 @@ class UsersController < ApplicationController
   end
 
 end
-
-
-

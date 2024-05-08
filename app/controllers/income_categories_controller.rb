@@ -36,10 +36,9 @@ class IncomeCategoriesController < ApplicationController
   end
 
   private
-    
+
   def category_params
     params.require(:income_category).permit(:name,:image)
   end
-
 
   end

@@ -2,6 +2,10 @@ class User < ApplicationRecord
   has_many :incomes
   has_many :outcomes
   has_many :wants
+
+  validates :name,   presence: true
+  validates :role,  inclusion: {in: [true, false]}
+
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -33,13 +37,11 @@ class User < ApplicationRecord
     role == true
   end
 
-  scope :user_roles, -> {
-    {true: "おうち",false: "利用者"}
-  }
+  # エラーになる　'1' is not a valid role
+  # enum role: { general: false, admin: true }
+  # enum role: { general: 0, admin: 1 }
 
-  scope :update_days_sqlite, -> { user.group("strftime('%Y-%m-%d', updated_at, '+09:00')").pluck(:updated_at) }
-  scope :update_days_mysql, -> { user.group("date_format(updated_at + interval 9 hour, '%Y-%m-%d')").pluck(:updated_at) }
+  scope :created_days_sqlite, -> { user.group("strftime('%Y-%m-%d', created_at, '+09:00')").pluck(:created_at) }
+  scope :created_days_mysql, -> { user.group("date_format(updated_at + interval 9 hour, '%Y-%m-%d')").pluck(:updated_at) }
 
-
-  
 end

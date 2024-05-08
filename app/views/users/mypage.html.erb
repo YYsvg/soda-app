@@ -4,11 +4,17 @@
 <h1>マイページ</h1>
 
 <hr>
+<div>
+    <div><%= link_to "ユーザー情報の編集画面", mypage_edit_users_path %></div>
+<div>
+<div>
+  <%= link_to "トップページへもどる", homes_path %>
+</div>
 
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>#</th>
+      <th>No</th>
       <th>項目</th>
       <th>金額</th>
     </tr>
@@ -16,19 +22,6 @@
   <tbody>
     <tr>
       <th scope="row">1</th>
-      <td>月の収支</td>
-      <td>
-      <% @incomes.each do |income| %>
-        <% if income.user_id == current_user.id %>
-          <%= income.price.to_s(:delimited) %>
-        <% else %>
-          ありません
-        <% end %>
-      <% end %>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
       <td>収入の合計</td>
       <td>
         <% @income_total.each do |user_id, total_price| %>
@@ -38,6 +31,44 @@
         <% end %>
       <td>
     </tr>
+    <tr>
+
+    <tr>
+      <th scope="row">2</th>
+      <td>月毎の収入合計</td>
+      <td>
+      <% @income_totals_by_month.each do |user_id, user_totals| %>
+        <p><%= user_id %>月:</p>
+          <% if user_id == current_user.id %>
+            <p>ユーザーID: <%= user_id %>, 月: <%= user_id %>, 合計: <%= user_totals %>円</p>
+          <% end %>
+      <% end %>
+
+      <% @income_month.each do |income_month| %>
+        <%= @income_month.keys %>
+        <%= @income_month.count[Date.today.month] %>
+        
+      <% end %>
+
+      <% @income_totals_by_month.each do |(month, user_id), user_totals| %>
+        <p><%= month %>月:</p>
+        <% if user_id == current_user.id %>
+          <p>ユーザーID: <%= user_id %>, 合計: <%= user_totals %>円</p>
+        <% end %>
+      <% end %>
+</td></tr>
+      
+
+
+<% @income_totals_by_month.each do |month, total_price| %>
+  <p><%= month %>: <%= total_price %>円</p>
+    </tr>
+date.strftime("%Y-%m")
+
+<% end %>
+
+
+
     <tr>
       <th scope="row">2</th>
       <td>支出の合計</td>
@@ -54,7 +85,11 @@
       <th scope="row">3</th>
       <td>残高</td>
       <td>
-       
+       <%= Time.now %><br>
+       <%= Date.today %><br>
+       <%= Time.now.beginning_of_month %><br>
+       <%= @monthly_totals %><br>
+       <%= @yearly_totals %>
       <td>
     </tr>
 
@@ -62,18 +97,9 @@
     </tr>
   </tbody>
 </table>
-
-
-
-
-<%= @users.each {|user| user} %>
-<%= @incomes.each {|income| income} %>
-
-
 </div>
 <div>
   <label>年の収支</label>
-
 </div>
 
 <div>
@@ -87,19 +113,4 @@
 <div>
 <p><%= %></p>
 
-
-
-
-
-
-</div>
-
-
-
-<div>
-    <div><%= link_to "ユーザー情報の編集画面", mypage_edit_users_path %></div>
-<div>
-
-<div>
-  <%= link_to "トップページへもどる", homes_path %>
 </div>
