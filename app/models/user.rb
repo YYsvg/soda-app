@@ -6,7 +6,6 @@ class User < ApplicationRecord
   validates :name,   presence: true
   validates :role,  inclusion: {in: [true, false]}
 
-  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -36,12 +35,4 @@ class User < ApplicationRecord
   def admin?
     role == true
   end
-
-  # エラーになる　'1' is not a valid role
-  # enum role: { general: false, admin: true }
-  # enum role: { general: 0, admin: 1 }
-
-  scope :created_days_sqlite, -> { user.group("strftime('%Y-%m-%d', created_at, '+09:00')").pluck(:created_at) }
-  scope :created_days_mysql, -> { user.group("date_format(updated_at + interval 9 hour, '%Y-%m-%d')").pluck(:updated_at) }
-
 end

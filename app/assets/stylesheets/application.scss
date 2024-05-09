@@ -33,7 +33,7 @@ body {
 // ＝＝＝＝
 
 .card {
-  height: 95vh;
+  height: 100vh;
 }
 .card-title,.card-text {
   text-align: center;
@@ -67,7 +67,6 @@ body {
   padding: 15px;
 }
 
-
  // hover時のアクション
 .tab:hover{
   box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
@@ -94,4 +93,55 @@ body {
 
 .coment {
   margin: 10px auto;
+}
+.back {
+  text-align: right;
+  font-size: larger;
+}
+.color{
+  color: #212529;
+  text-decoration: none;
+}
+
+.link-list {
+  display: block;
+  list-style: none;
+  line-height: 4.5rem;
+  margin: 20px;
+}
+.link-color {
+  color: #fff;
+  font-weight: 400;
+  font-size: 1.1rem;
+  border-style: none;
+  width: 30px;
+  // height: 5px;
+  padding: 15px;
+  text-align: center;
+  background-color: #FFD1E3;
+  border: 1px #FFD1E3 solid;
+  
+}
+
+// リンク時の下線をなくす
+.link-color:hover{
+  text-decoration: none;
+  color:rgba(0, 0, 0, 0.5)
+}
+
+// または
+.home {
+  font-size: larger;
+  text-align: center;
+}
+
+// mypage
+
+.card {
+  margin: 0 auto 60px;
+  max-width: 376px;
+  height: 370px;
+}
+.card-body p {
+  text-align: center;
 }

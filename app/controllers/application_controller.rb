@@ -6,7 +6,9 @@ class ApplicationController < ActionController::Base
 
 
   def authenticate
-    redirect_to new_user_registration_url unless user_signed_in?
+    # redirect_to new_user_registration_url unless user_signed_in?
+    # ログイン画面にする
+    redirect_to new_user_session_url unless user_signed_in?
   end
 
   private
@@ -23,7 +25,9 @@ class ApplicationController < ActionController::Base
 
     # ログアウト後のリダイレクト先
     def after_sign_out_path_for(resource_or_scope)
-      new_user_registration_path
+      # new_user_registration_path
+      # ログイン画面
+      new_user_session_url
     end
 
     def configure_permitted_parameters

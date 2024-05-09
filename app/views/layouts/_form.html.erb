@@ -22,8 +22,10 @@
     <div><%= f.submit "入力する" %></div>
   <% end %>
 
-  <div class="coment">
-    <p><%= link_to "収入の一覧へ", :incomes %></p>
-    <p><%= link_to "カテゴリの作成、編集、削除", :new_income_category %></p>
-    <p><%= link_to "やりたいことリストへ", :wants %></p>
+  <div>
+    <ul class="link-list">
+      <li><%= link_to "収入の一覧へ", :incomes, class:"link-color" %></li>
+      <li><%= link_to "カテゴリの作成、編集、削除", :new_income_category, class:"link-color" %></li>
+      <li><%= link_to "やりたいことリストへ", :wants, class:"link-color" %></li>
+    </ul>
   </div>

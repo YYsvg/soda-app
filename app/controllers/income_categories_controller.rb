@@ -1,7 +1,11 @@
 class IncomeCategoriesController < ApplicationController
   before_action :authenticate
+  # before_action :set_category , only: %w[show,edit,update,destroy]
+
   
   def index
+    # current_userのカテゴリーだけ表示させたい場合
+    # @income_categories = current_user.income_categories.all
     @income_categories = IncomeCategory.all
   end
 
@@ -39,6 +43,10 @@ class IncomeCategoriesController < ApplicationController
 
   def category_params
     params.require(:income_category).permit(:name,:image)
+  end
+
+  def set_category
+    @income_category = IncomeCategory.find(params[:id])
   end
 
   end

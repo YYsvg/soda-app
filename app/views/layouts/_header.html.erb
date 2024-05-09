@@ -1,11 +1,7 @@
 <header>
-  <% if current_user %>
+  <% if current_user.present? %>
     <div><%= current_user.name + "さん専用ノート" %></div>
     <div class="td"><%= link_to "マイページ", mypage_users_path %></div>
     <div class="td"><%= link_to 'ログアウトはこちらから', destroy_user_session_path, method: :delete  %></div>
-  <% else %>
-    <div><%= link_to 'ログイン', new_user_registration_path %></div>
   <% end %>
-
-
 </header>

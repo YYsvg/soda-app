@@ -14,9 +14,6 @@ class OutcomesController < ApplicationController
 
   def create
     @outcome = current_user.outcomes.new(outcome_params)
-    # @outcome = current_user.outcomes.build(outcome_params) 
-    # 変更後（new も使えるらしい。が、慣習的にbuildを使うらしい）
-    # @report = current_user.reports.new(report_params) 
     @outcome.save
     redirect_to @outcome
   end

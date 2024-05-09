@@ -4,36 +4,35 @@ class UsersController < ApplicationController
   before_action :set_user
 
   def mypage
-    @users = User.all
-    @incomes = Income.all
-    @outcomes = Outcome.all
 
-    @income_total = Income.group(:user_id).sum(:price)
-    
-    @income_month = Income.group("strftime('%Y-%m', created_at)").count
-    # @income_month = Income.group("strftime('%Y-%m', created_at)").pluck("strftime('%Y-%m', created_at)", :created_at)
+    @income_total = current_user.incomes.sum(:price)
+    @outcome_total = current_user.outcomes.sum(:price)
+    @balance = @income_total - @outcome_total
 
 
-    @income_totals_by_month = Income.group("strftime('%Y-%m', created_at), user_id").sum(:price)
-    
+    @monthly_incomes = (1..12).map do |month|
+      {
+       month: "#{month}月",
+       incomes: current_user.incomes.where(created_at: Date.new(2024, month, 1).all_month).sum(:price)
+     }
+     end
 
-    # monthly_total = income_total.all_month
-    # @user = User.find(params[:id])
-    # @income = Income.find(params[:id])
-
-    # @monthly_tolal = @daily_records.where(date: @income.all_month).sum(:price)
-    @monthly_totals = Income.all.group_by { |income| income.created_at.beginning_of_month }.transform_values { |incomes| incomes.sum(&:price) }
-
-    # 年ごとの合計を計算
-    @yearly_totals = Income.all.group_by { |income| income.created_at.beginning_of_year }.transform_values { |incomes| incomes.sum(&:price) }
-    @outcome_total = Outcome.group(:user_id).sum(:price)
-    @balance = 0
-    # amount = @income_total - @outcome_total
-    @total = Income.sum(:price)
-
+    @monthly_outcomes = (1..12).map do |month|
+      {
+       month: "#{month}月",
+       outcomes: current_user.outcomes.where(created_at: Date.new(2024, month, 1).all_month).sum(:price)
+     }
+     end
   end
 
   def edit
+    @user = User.find(current_user.id)
+  end
+
+  def update
+    @user = User.find(current_user.id)
+    @user = @user.update(user_params)
+    redirect_to mypage_users_path
   end
 
   private

@@ -6,12 +6,18 @@
   
     <div>
       <%= f.label :memo,"メモ" %>
-      <%= f.text_field :memo  %>
+      <%= f.text_area :memo,  placeholder: "やりたいことを書こう！", size: "50x10"%>
     </div>
 
     <div>
-      <%= f.label :image,"写真" %>
+      <%= f.label :image,"イメージ図" %>
       <%= f.file_field :image %>
+    </div>
+
+    ＊カラム追加はまだ＊
+    <div>
+      <%= f.label :price,"予算" %>
+      <%= f.number_field :price %>円
     </div>
 
     <div><%= f.submit "入力する" %></div>

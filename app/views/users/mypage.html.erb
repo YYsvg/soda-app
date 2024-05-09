@@ -17,100 +17,118 @@
       <th>No</th>
       <th>項目</th>
       <th>金額</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th scope="row">1</th>
-      <td>収入の合計</td>
-      <td>
-        <% @income_total.each do |user_id, total_price| %>
-          <% if user_id == current_user.id %>
-            <%= total_price.to_s(:delimited) %>円
-          <% end %>
-        <% end %>
-      <td>
+      <td>今までの収入の合計</td>
+      <td><%= @income_total.to_s(:delimited) %>円</td>
+      <td></td>
     </tr>
-    <tr>
 
     <tr>
       <th scope="row">2</th>
-      <td>月毎の収入合計</td>
-      <td>
-      <% @income_totals_by_month.each do |user_id, user_totals| %>
-        <p><%= user_id %>月:</p>
-          <% if user_id == current_user.id %>
-            <p>ユーザーID: <%= user_id %>, 月: <%= user_id %>, 合計: <%= user_totals %>円</p>
-          <% end %>
-      <% end %>
-
-      <% @income_month.each do |income_month| %>
-        <%= @income_month.keys %>
-        <%= @income_month.count[Date.today.month] %>
-        
-      <% end %>
-
-      <% @income_totals_by_month.each do |(month, user_id), user_totals| %>
-        <p><%= month %>月:</p>
-        <% if user_id == current_user.id %>
-          <p>ユーザーID: <%= user_id %>, 合計: <%= user_totals %>円</p>
-        <% end %>
-      <% end %>
-</td></tr>
-      
-
-
-<% @income_totals_by_month.each do |month, total_price| %>
-  <p><%= month %>: <%= total_price %>円</p>
-    </tr>
-date.strftime("%Y-%m")
-
-<% end %>
-
-
-
-    <tr>
-      <th scope="row">2</th>
-      <td>支出の合計</td>
-      <td>
-        <% @outcome_total.each do |user_id, total_price| %>
-          <% if user_id == current_user.id %>
-            <%= total_price.to_s(:delimited) %>円
-          <% end %>
-        <% end %>
-      <td>
+      <td>今までの支出の合計</td>
+      <td><%= @outcome_total.to_s(:delimited) %>円</td>
+      <td></td>
     </tr>
 
     <tr>
       <th scope="row">3</th>
-      <td>残高</td>
-      <td>
-       <%= Time.now %><br>
-       <%= Date.today %><br>
-       <%= Time.now.beginning_of_month %><br>
-       <%= @monthly_totals %><br>
-       <%= @yearly_totals %>
-      <td>
+      <td>収支</td>
+      <td><%= @balance.to_s(:delimited) %>円</td>
+      <td></td>
     </tr>
 
-      </td>
+    <tr>
+      <th scope="row">＃</th>
+      <td>#####</td>
+          <td><%=  %></td>
+          <td></td>
+    </tr>
+
+    <tr>
+      <th scope="row">4</th>
+      <td>月毎の収支</td>
+          <td></td>
+          <td></td>
+    </tr>
+
+    <tr>
+      <th scope="row">5</th>
+      <td>【収入】
+      <% @monthly_incomes.each do |month| %></td>
+        <td><%= month[:month] %>
+        <%= month[:incomes] %>円</td>
+      <% end %>
+    </tr>
+
+    <tr>
+      <th scope="row">6</th>
+      <td>【支出】
+      <% @monthly_outcomes.each do |month| %></td>
+        <td><%= month[:month] %>
+        <%= month[:outcomes] %>円</td>
+      <% end %>
     </tr>
   </tbody>
 </table>
-</div>
-<div>
-  <label>年の収支</label>
+
+<div><label>年の収支</label></div>
+
+<div><label>プレゼント用</label></div>
+
+<div><label>やりたいこと用</label></div>
+
+
+<div class="mx-auto" style="width: 50rem; height 20rem;">
+  <div class="card-deck">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">収入の合計</h4>
+        <p class="card-text">
+        <%= @income_total.to_s(:delimited) %>円
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">支出の合計</h4>
+        <p class="card-text"><%= @outcome_total.to_s(:delimited) %>円</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">残高</h4>
+        <p class="card-text"><%= @balance.to_s(:delimited) %>円</p>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div>
-  <label>プレゼント用</label>
-</div>
+<br><br>
 
-<div>
-  <label>やりたいこと用</label>
-</div>
+<div class="texts-wrapper">
+   <div class="contents-title text-center">
+     <h3>月ごとの収入</h3>
+     <div class="row">
+       <% @monthly_incomes.each do |month| %>
+         <div class="col-12 col-md-6 col-lg-4">
+           <div class="card">
+            <%= image_tag "/pan.png" %>
+               <div class="card-body">
+                <p class="card-title">
+                <%= month[:month] %>
+                <%= month[:incomes] %>円</p>
+               </div>
+           </div>
+         </div>
+       <% end %>
+     </div>
+   </div>
+ </div> 
 
-<div>
-<p><%= %></p>
 
 </div>
