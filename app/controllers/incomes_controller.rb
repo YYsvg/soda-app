@@ -2,7 +2,7 @@ class IncomesController < ApplicationController
   before_action :authenticate
   
   def index
-    @incomes = Income.all
+    @incomes = current_user.incomes.all
     @income_categories = IncomeCategory.all
   end
 

@@ -1,6 +1,7 @@
 class Admin::BaseController < ApplicationController
   before_action :authenticate_user!
   before_action :check_admin
+  # before_action :configure_permitted_parameters, if: :devise_controller?
   layout "admin"
 
 

@@ -51,14 +51,19 @@ body {
   border-bottom: solid 1px #CCC;
   text-align: center;
   background-color: #FFFAB7;
+  font-size: 1.2rem;
+  font-weight: 400;
 }
 .tab:first-child {
   border-left: none;
 }
  // タブがactiveのときのデザイン
 .tab-active {
-  color: #FFF;
-  background: #7AA2E3;
+  color: #fff;
+  font-weight: 400;
+  font-size: 1.2rem;
+  background: #7BD3EA;
+  // background: #7AA2E3;
   transition: all 0.2s ease-in-out;
 }
  // タブの中身、最初は非表示
@@ -82,7 +87,7 @@ body {
   text-align: center;
 }
 
-// 
+// bootstrap優先となっている
 
 .td {
   text-align: right;
@@ -90,6 +95,7 @@ body {
 .th {
   text-align: center;
 }
+//
 
 .coment {
   margin: 10px auto;
@@ -99,7 +105,7 @@ body {
   font-size: larger;
 }
 .color{
-  color: #212529;
+  color: #483434;
   text-decoration: none;
 }
 
@@ -110,17 +116,36 @@ body {
   margin: 20px;
 }
 .link-color {
-  color: #fff;
+  color: #483434;
   font-weight: 400;
-  font-size: 1.1rem;
+  font-size: 1.0rem;
   border-style: none;
   width: 30px;
   // height: 5px;
   padding: 15px;
   text-align: center;
+  border-radius: 10px;
   background-color: #FFD1E3;
   border: 1px #FFD1E3 solid;
-  
+}
+
+.submit-color {
+  color: #FFF;
+  font-weight: 400;
+  font-size: 1.3rem;
+  border-style: none;
+  // width: 70px;
+  padding: 25px;
+  // margin: auto;
+  // text-align: center;
+  border-radius: 50%;
+  background-color: #7BD3EA;
+  border: 1px #7BD3EA
+}
+
+.income {
+  // background-color: #FDDE55;
+  background-color: #F5DD61;
 }
 
 // リンク時の下線をなくす
@@ -128,6 +153,7 @@ body {
   text-decoration: none;
   color:rgba(0, 0, 0, 0.5)
 }
+
 
 // または
 .home {
@@ -144,4 +170,25 @@ body {
 }
 .card-body p {
   text-align: center;
+}
+
+.category_list {
+  list-style: none;
+  color: #483434;
+  font-size: 1.2rem;
+}
+
+// ヘッダー
+.logout-color {
+  color: #483434;
+  font-weight: 400;
+  font-size: 1.0rem;
+  border-style: none;
+  width: 30px;
+  padding: 15px;
+  text-align: right;
+  border-radius: 20px;
+  background-color: #FFf;
+  border: 1px #FFf solid;
+  margin-bottom: 30px;
 }

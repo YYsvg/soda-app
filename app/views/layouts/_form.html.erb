@@ -1,31 +1,35 @@
-  <%= form_with model: @income, local: true do |f| %>
-    <div>
-      <%= f.label :price,"金額" %>
-      <%= f.number_field :price  %>
-    </div>
-    <div>
-      <%= f.label :memo,"メモ" %>
-      <%= f.text_field :memo %>
-    </div>
-    <div>
-      <% @income_categories. each do |income_category| %>
+<!--<div class="container">-->
+  <!--<div class="col-sm-9">-->
+    <%= form_with model: @income, local: true do |f| %>
       <div>
-        <%= f.radio_button(:income_category_id, "#{income_category.id}" ) %>
-        <%= f.label :income_category_id, "#{income_category.name}", {value: income_category.id.to_i, style: "display: inline-block;"} %>
+        <% @income_categories. each do |income_category| %>
+        <div>
+          <%= f.radio_button(:income_category_id, "#{income_category.id}" ) %>
+          <%= f.label :income_category_id, "#{income_category.name}", {value: income_category.id.to_i, style: "display: inline-block;"} %>
+        </div>
+        <% end %>
+      </div><br>
+      
+      <div>
+        <%= f.label :price,"金額　" %>
+        <%= f.number_field :price  %>
       </div>
-      <% end %>
-    </div>
-    <div>
-      <%= f.label :image,"写真" %>
-      <%= f.file_field :image %>
-    </div>
-    <div><%= f.submit "入力する" %></div>
-  <% end %>
+      <div>
+        <%= f.label :memo,"メモ　" %>
+        <%= f.text_field :memo %>
+      </div>
+      
+      <div>
+        <%= f.label :image,"写真もどうぞ　" %>
+        <%= f.file_field :image %>
+      </div><br>
+      <div><%= f.submit "保存", class:"submit-color income" %></div>
+    <% end %>
 
-  <div>
-    <ul class="link-list">
-      <li><%= link_to "収入の一覧へ", :incomes, class:"link-color" %></li>
-      <li><%= link_to "カテゴリの作成、編集、削除", :new_income_category, class:"link-color" %></li>
-      <li><%= link_to "やりたいことリストへ", :wants, class:"link-color" %></li>
-    </ul>
-  </div>
+    <div>
+      <ul class="link-list">
+        <li><%= link_to "収入の一覧へ", :incomes, class:"link-color" %></li>
+        <li><%= link_to "カテゴリの作成、編集、削除", :new_income_category, class:"link-color" %></li>
+        <li><%= link_to "やりたいことリストへ", :wants, class:"link-color" %></li>
+      </ul>
+    </div>

@@ -11,6 +11,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[line]
+         
 
   def social_plofile(provider)
     social_plofile.select { |sp| sp.provider == provider.to_s }.first

@@ -1,0 +1,39 @@
+<div class="container">
+  <h2><%= "#{@year}年1月1日〜12月31日" %></h2>
+  <h3>
+    <%= "支出　#{number_to_currency(@yearly_outcomes_total, unit: "",separator: '.', delimiter: ',', precision: 0)} 円　" %> | <%= "　収入　#{number_to_currency(@yearly_incomes_total, unit: "", separator: '.', delimiter: ',', precision: 0)} 円" %>
+  </h3>
+</div>
+
+<div class="mx-auto" style="width: 50rem; height 10rem;">
+  <div class="card-deck">
+    <div class="card">
+      <div class="card-body"><br>
+        <h3 class="card-title">年間収入</h3><br>
+        <h4 class="card-text">
+        <%= @yearly_incomes_total.to_s(:delimited) %>円
+        </h4>
+      </div>
+    </div>
+    
+    <br>
+    
+    <div class="card">
+      <div class="card-body"><br>
+        <h3 class="card-title">年間支出</h3><br>
+        <h4 class="card-text">
+          <%= @yearly_outcomes_total.to_s(:delimited) %>円
+        </h4>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body"><br>
+        <h3 class="card-title">残高</h3><br>
+        <h4 class="card-text">
+          <%= @yearly_balance.to_s(:delimited) %>円
+        </h4>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,34 +1,38 @@
 <%= form_with model: @outcome, local: true do |f| %>
     <div>
-      <%= f.label :price,"金額" %>
-      <%= f.number_field :price  %>
-    </div>
-    <div>
-      <%= f.label :memo,"メモ" %>
-      <%= f.text_field :memo %>
-    </div>
-    <div>
       <% @outcome_categories.each do |outcome_category| %>
       <div>
-        <%= f.radio_button(:outcome_category_id, "#{outcome_category.id}" ) %>
+        <%= f.radio_button(:outcome_category_id, "#{outcome_category.id}") %>
         <%= f.label :outcome_category_id, "#{outcome_category.name}", {value: outcome_category.id.to_i, style: "display: inline-block;"} %>
       </div>
       <% end %>
-    </div>
+    </div><br>
 
     <div>
-      <%= f.label :image,"写真" %>
+      <%= f.label :price,"金額　" %>
+      <%= f.number_field :price %>
+    </div><br>
+    <div>
+      <%= f.label :memo,"メモ　" %>
+      <%= f.text_field :memo %>
+    </div><br>
+    <div>
+      <%= f.label :image,"写真もどうぞ　" %>
       <%= f.file_field :image %>
-    </div>
-    <div><%= f.submit "入力する" %></div>
+    </div><br>
+    <div><%= f.submit "保存", class:"submit-color"%>
+      <!-- 保存ボタンを画像で表示させることもできる がスマホでは表示されない
+      <%= image_submit_tag("goods4.png", class: 'search-icon') %>-->
+    </div><br>
 <% end %>
 
   <div>
     <ul class="link-list">
-    <li><%= link_to "支出の一覧へ", :outcomes, class:"link-color" %></li>
-    <li><%= link_to "カテゴリの作成、編集、削除", :new_outcome_category, class:"link-color" %></li>
-    <li><%= link_to "やりたいことリストへ", :wants, class:"link-color" %></li>
-  </ul>
+      <li><%= link_to "マイページへ", mypage_users_path, class:"link-color" %></li>
+      <li><%= link_to "支出の一覧へ", :outcomes, class:"link-color" %></li>
+      <li><%= link_to "やりたいことリストへ", :wants, class:"link-color" %></li>
+      <li><%= link_to "カテゴリの作成、編集、削除", :new_outcome_category, class:"link-color" %></li>
+    </ul>
   </div>
 
 

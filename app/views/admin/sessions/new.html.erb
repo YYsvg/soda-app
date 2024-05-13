@@ -1,7 +1,7 @@
 <h2>管理者ログイン画面Login</h2>
 sessions/new.html.erb
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: sessions_path(resource_name)) do |f| %>
   <%= render "admin/shared/error_messages", resource: resource %>
   
   <div class="field">
