@@ -1,16 +1,19 @@
-<div class="mx-auto" style="width: 300px;">
+<div class="mx-auto" style="width: 900px;">
   <h1>収入の記録</h1>
 
   <br>
-
-  <p>メモ  <%= @income.memo %></p>
-  <p>¥    <%= @income.price %></p>
+  <h2>メモ  <%= @income.memo %></h2>
+  <h2>¥    <%= @income.price.to_s(:delimited) %></h2>
   <br>
-
   <div>
-    <%= image_tag @income.image.thumb.url%>
+    <%= image_tag @income.image.thumb.url, class:"center" %>
+  </div>
+  
+  <div>
+    <%= link_to "編集する", edit_income_path(@income.id), class:"link-btn new" %>
   </div>
 
-  <br>
-  <%= link_to "トップページへ戻る", root_path, class: "btn btn-primary" %>
+  <br><br><br><br>
+  <%= link_to "トップページへ戻る", homes_path, class: "submit-color back" %>
+  <br><br><br><br><br>
 </div>

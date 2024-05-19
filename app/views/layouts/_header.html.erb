@@ -1,7 +1,7 @@
 <header>
   <% if current_user.present? %>
-    <div class="col-sm-9"><h3><%= current_user.name + "さん専用ノート" %></h3></div>
-    <!--<div class="col-sm-9 text-right"><%= link_to "設定", mypage_users_path %></div> -->
+    <div class="col-sm-9"><h3><%= "#{current_user.name} さん専用ノート" %></h3></div>
   <% end %>
   <br><br>
 </header>
+

@@ -1,9 +1,8 @@
-<div class="mx-auto" style="width: 700px;">
+<div class="mx-auto" style="width: 900px;">
 <% pagename = "収入の一覧" %>
   <h1 class="card-title"><%= pagename %></h1>
 
 <br><br>
-
 <table class="table table-hover">
     <thead>
       <tr class="th">
@@ -17,9 +16,7 @@
         <th></th>
       </tr>
     </thead>
-
     <tbody>
-
       <% @incomes.each do |income| %>
         <% if income.user_id == current_user.id %>
           <tr class="th">
@@ -28,23 +25,17 @@
             <td><%= income.price.to_s(:delimited) %></td>
             <td><%= income.memo %></td>
             <td><%= image_tag income.image.thumb50.url %>
-            <td><%= link_to "詳細", income_path(income), class: "btn btn-primary btn-sm" %></td>
-            <td><%= link_to "編集", edit_income_path(income.id) %></td>
-            <td><%= link_to "削除", income_path(income.id), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+            <td><%= link_to "詳細", income_path(income), class: "link-btn show" %></td>
+            <td><%= link_to "削除", income_path(income.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class:"link-btn" %></td>
           </tr>
-        <% else %>
           <tr></tr>
         <% end %>
       <% end %>
     </tbody>
   </table>
-
   <div>
-    <%= link_to "トップページへ戻る", root_path %>
+    <%= link_to "トップページへ戻る", homes_path, class:"submit-color" %>
   </div>
-
-
-
 </div>
 
 

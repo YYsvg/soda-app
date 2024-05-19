@@ -9,10 +9,10 @@ ja:
     failure:
       already_authenticated: 'すでにログインしています。'
       inactive: 'アカウントが有効化されていません。メールに記載された手順に従って、アカウントを有効化してください。'
-      invalid: '%{authentication_keys}もしくはパスワードが不正です。'
+      invalid: 'ログイン情報に誤りがあるためログインできません。'
       locked: 'あなたのアカウントは凍結されています。'
       last_attempt: 'あなたのアカウントが凍結される前に、複数回の操作が行われています。'
-      not_found_in_database: "%{authentication_keys}もしくはパスワードが不正です。"
+      not_found_in_database: "ログイン情報に誤りがあるためログインできません"
       timeout: 'セッションがタイムアウトしました。もう一度ログインしてください。'
       unauthenticated: 'アカウント登録もしくはログインしてください。'
       unconfirmed: 'メールアドレスの本人確認が必要です。'
@@ -61,3 +61,14 @@ ja:
       not_saved:
         one: "エラーが発生したため %{resource} は保存されませんでした:"
         other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした:"
+ja:
+  activerecord:
+    attributes:
+      user:
+        email: "メールアドレス"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "が入力されていません。"

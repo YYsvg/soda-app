@@ -20,7 +20,7 @@
 body {
   margin: 0;
   font-family: "Zen Maru Gothic", sans-serif;
-  font-size: .9rem;
+  font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.6;
   color: #212529;
@@ -29,15 +29,8 @@ body {
 }
 
 // ＝＝＝＝
-// home画面　タブ表示
+// home,mypage画面　タブ表示
 // ＝＝＝＝
-
-.card {
-  height: 100vh;
-}
-.card-title,.card-text {
-  text-align: center;
-}
 
  // タブ切り替え
 .tab-list {
@@ -51,19 +44,19 @@ body {
   border-bottom: solid 1px #CCC;
   text-align: center;
   background-color: #FFFAB7;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 400;
+  box-shadow: 0 4px 7px 0 #888;
 }
 .tab:first-child {
   border-left: none;
 }
- // タブがactiveのときのデザイン
+ // タブがactiveのとき
 .tab-active {
   color: #fff;
   font-weight: 400;
-  font-size: 1.2rem;
+  font-size: 2.0rem;
   background: #7BD3EA;
-  // background: #7AA2E3;
   transition: all 0.2s ease-in-out;
 }
  // タブの中身、最初は非表示
@@ -71,114 +64,20 @@ body {
   display: none;
   padding: 15px;
 }
-
- // hover時のアクション
+ // hover時
 .tab:hover{
-  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 10px 0 #999;
   transform: translateY(-1px);
 }
-
  // box-showクラスのものだけ表示
  .box-show {
   display: block;
 }
 
-.grap {
-  text-align: center;
-}
 
-// bootstrap優先となっている
-
-.td {
-  text-align: right;
-}
-.th {
-  text-align: center;
-}
-//
-
-.coment {
-  margin: 10px auto;
-}
-.back {
-  text-align: right;
-  font-size: larger;
-}
-.color{
-  color: #483434;
-  text-decoration: none;
-}
-
-.link-list {
-  display: block;
-  list-style: none;
-  line-height: 4.5rem;
-  margin: 20px;
-}
-.link-color {
-  color: #483434;
-  font-weight: 400;
-  font-size: 1.0rem;
-  border-style: none;
-  width: 30px;
-  // height: 5px;
-  padding: 15px;
-  text-align: center;
-  border-radius: 10px;
-  background-color: #FFD1E3;
-  border: 1px #FFD1E3 solid;
-}
-
-.submit-color {
-  color: #FFF;
-  font-weight: 400;
-  font-size: 1.3rem;
-  border-style: none;
-  // width: 70px;
-  padding: 25px;
-  // margin: auto;
-  // text-align: center;
-  border-radius: 50%;
-  background-color: #7BD3EA;
-  border: 1px #7BD3EA
-}
-
-.income {
-  // background-color: #FDDE55;
-  background-color: #F5DD61;
-}
-
-// リンク時の下線をなくす
-.link-color:hover{
-  text-decoration: none;
-  color:rgba(0, 0, 0, 0.5)
-}
-
-
-// または
-.home {
-  font-size: larger;
-  text-align: center;
-}
-
-// mypage
-
-.card {
-  margin: 0 auto 60px;
-  max-width: 376px;
-  height: 370px;
-}
-.card-body p {
-  text-align: center;
-}
-
-.category_list {
-  list-style: none;
-  color: #483434;
-  font-size: 1.2rem;
-}
-
-// ヘッダー
+// =========
+// ボタン設定
+// =========
 .logout-color {
   color: #483434;
   font-weight: 400;
@@ -191,4 +90,128 @@ body {
   background-color: #FFf;
   border: 1px #FFf solid;
   margin-bottom: 30px;
+}
+.submit-color {
+  display: block;
+  color: #483434;
+  font-weight: 400;
+  font-size: 1.3rem;
+  border-style: none;
+  padding: 25px;
+  border-radius: 50%;
+  background-color: #FFD1E3;
+  border: 1px #FFD1E3;
+  width: 20%;
+  text-align: center;
+  margin: auto;
+}
+.link-list {
+  display: block;
+  list-style: none;
+  line-height: 4.5rem;
+  margin: 20px;
+}
+.link-color {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-style: none;
+  width: 30px;
+  padding: 15px;
+  text-align: center;
+  border-radius: 10px;
+  background-color: #67C6E3;
+  border: 1px #67C6E3 solid;
+}
+
+// 一覧ページ
+.link-btn {
+  color: #fff;
+  font-weight: 400;
+  font-size: 1.4rem;
+  border-style: none;
+  width: 20px;
+  padding: 6px;
+  text-align: center;
+  border-radius: 10px;
+  background-color: #67C6E3;
+  border: 1px #67C6E3 solid;
+}
+
+// リンク時の下線をなくす
+.link-color:hover,
+.submit-color:hover,
+.link-btn:hover,
+.logout-color:hover,
+.admin-logout:hover {
+  text-decoration: none;
+  color:rgba(152, 91, 91, 0.5)
+}
+
+// 画面ごと
+.show {
+  color: #212529;
+}
+// やりたいこと新規
+.new {
+  display: block;
+  font-size: 1.6rem;
+  width: 20%;
+  padding: 20px;
+  margin: 30px auto;
+}
+.back {
+  display: block;
+  width: 30%;
+  padding: 20px;
+  margin: 30px auto;
+}
+.name {
+  padding: 10px;
+  width: 30%;
+}
+
+
+// ===================
+// マイページ_月別、年別
+// ===================
+.card {
+  margin: 0 auto 60px;
+  max-width: 376px;
+  height: 370px;
+}
+.card-body p {
+  text-align: center;
+}
+.category_list {
+  list-style: none;
+}
+
+//　ユーザーログイン画面
+.home {
+  font-size: larger;
+  text-align: center;
+}
+
+// 管理者ページ
+.admin {
+  background-color: #FCF9F1;
+  font-size: 1.3rem;
+}
+.admin-logout {
+  color: #212529;
+  font-size: 1.0rem;
+}
+.admin-color {
+  background-color: #FCF9F1;
+}
+
+// 画面調整
+.center {
+  display: block;
+  margin: 20px auto;
+}
+
+.card-title,.card-text {
+  text-align: center;
 }

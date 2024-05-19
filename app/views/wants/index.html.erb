@@ -1,9 +1,8 @@
-<div class="mx-auto" style="width: 700px;">
+<div class="mx-auto" style="width: 900px;">
 <% pagename = "これからしたいこと" %>
   <h1 class="card-title"><%= pagename %></h1>
 
 <br><br>
-
 <table class="table table-hover">
     <thead>
       <tr class="th">
@@ -22,11 +21,10 @@
             <td><%= want[:id] %></td>
             <td><%= want.memo %></td>
             <td><%= image_tag want.image.thumb50.url %>
-            <td><%= link_to "詳細", want_path(want), class: "btn btn-primary btn-sm" %></td>
-            <td><%= link_to "編集", edit_want_path(want.id) %></td>
-            <td><%= link_to "削除", want_path(want.id), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+            <td></td>
+            <td><%= link_to "削除", want_path(want.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class:"link-btn show" %></td>
+            <td></td>
           </tr>
-        <% else %>
           <tr></tr>
         <% end %>
       <% end %>
@@ -34,15 +32,12 @@
   </table>
 
   <div>
-    <%= link_to "新規作成", :new_want %>
+    <%= link_to "新規作成", :new_want, class:"link-btn new" %>
   </div>
+  <br><br><br><br>
   <div>
-    <%= link_to "トップページへ戻る", homes_path %>
+    <%= link_to "トップページへ戻る", homes_path, class:"submit-color back" %>
   </div>
-
-
-
-
 </div>
 
 

@@ -1,15 +1,16 @@
-カテゴリの作成
-
-<%= form_with model: @income_category, local: true do |f| %>
-    <div>
-      <label>カテゴリー名</label><%= f.text_field :name %>
-    </div>
-    <%= f.submit "作成する" %>
-<% end %>
-
-
-<div>
-  <p>編集、削除は一覧ページから</p>
-  <%= link_to "一覧へ", income_categories_path %>
-  <%= link_to "トップページへ", homes_path %>
-</div>
+<div class="mx-auto" style="width: 900px;">
+  <% pagename = "収入カテゴリの追加" %>
+  <h1><%= pagename %></h1>
+  
+  <div>
+    <%= form_with model: @income_category, local: true do |f| %>
+        <div class="box-name center">
+          <label>カテゴリー名　</label><%= f.text_field :name %>
+        </div>
+        <%= f.submit "作成する", class:"submit-color back" %>
+    <% end %><br><br><br>
+  </div>
+  <div>
+    <%= link_to "カテゴリ一覧へ", income_categories_path, class:"link-btn show back" %>
+    <%= link_to "トップページへ", homes_path, class:"submit-color" %>
+  </div>

@@ -24,24 +24,21 @@ class UsersController < ApplicationController
       }
     end
 
+    @monthly_outcomes = (1..12).map do |month|
+      start_date = Date.new(@year, month, 1)
+      end_date = start_date.end_of_month
+      category_outcomes = {}
 
-    
-      @monthly_outcomes = (1..12).map do |month|
-        start_date = Date.new(@year, month, 1)
-        end_date = start_date.end_of_month
-        category_outcomes = {}
-      
-        OutcomeCategory.all.each do |outcome_category|
-          category_outcome_price = current_user.outcomes.where(created_at: start_date..end_date, outcome_category_id: outcome_category.id).sum(:price)
-          category_outcomes[outcome_category.name] = category_outcome_price
-        end
-      
+      OutcomeCategory.all.each do |outcome_category|
+        category_outcome_price = current_user.outcomes.where(created_at: start_date..end_date, outcome_category_id: outcome_category.id).sum(:price)
+        category_outcomes[outcome_category.name] = category_outcome_price
+      end
         {
           month: start_date.strftime("%-m月"),
           total_outcomes: current_user.outcomes.where(created_at: start_date..end_date).sum(:price),
           category_outcomes: category_outcomes
         }
-      end
+    end
 
 
     # 当月の収支
@@ -51,14 +48,11 @@ class UsersController < ApplicationController
     current_month_outcome = @monthly_outcomes.find { |outcome| outcome[:month] == Date.current.strftime("%-m月") }
     @current_month_outcome_value = current_month_outcome[:total_outcomes]
     @current_month_outcome_name = current_month_outcome[:total_outcomes]
-    # @current_month_category_outcome_values = current_month_outcome[:outcome_categories]
 
     # 年間収支
     @yearly_incomes_total  = @monthly_incomes.sum { |income| income[:incomes] }
     @yearly_outcomes_total = @monthly_outcomes.sum { |outcome| outcome[:total_outcomes] }
     @yearly_balance = @yearly_incomes_total - @yearly_outcomes_total
-
-
   end
 
   def edit
@@ -68,7 +62,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(current_user.id)
     @user = @user.update(user_params)
-    redirect_to mypage_users_path
+    redirect_to homes_path
   end
 
   private

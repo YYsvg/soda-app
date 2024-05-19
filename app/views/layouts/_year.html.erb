@@ -1,11 +1,11 @@
-<div class="container">
+<div>
   <h2><%= "#{@year}年1月1日〜12月31日" %></h2>
   <h3>
     <%= "支出　#{number_to_currency(@yearly_outcomes_total, unit: "",separator: '.', delimiter: ',', precision: 0)} 円　" %> | <%= "　収入　#{number_to_currency(@yearly_incomes_total, unit: "", separator: '.', delimiter: ',', precision: 0)} 円" %>
   </h3>
 </div>
 
-<div class="mx-auto" style="width: 50rem; height 10rem;">
+<div class="mx-auto">
   <div class="card-deck">
     <div class="card">
       <div class="card-body"><br>

@@ -1,38 +1,38 @@
-<h2>管理者の新規作成Sign_up</h2>
-registrataion_new.html.erb
+<div class="admin-box">
+  <div class="box-inner">
+
+<h2>管理者専用アカウント作成</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "admin/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :name %><br />
+  <div class="box-name">
+    <%= f.label :name, "名前" %><br />
     <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
   </div>
-  <div class="field">
-    <%= f.label :email %><br />
+  <div class="box-email">
+    <%= f.label :email, "メールアドレス" %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
   <div class="field">
-    <%= f.label :role %><br />
-    <%= f.select :role, [['ユーザー',0],['管理者',1]], { include_blank: true, selected: 0 } %>
+    <%= f.label :role, "区分" %><br />
+    <%= f.select :role, [['ユーザー',0],['管理者',1]], { prompt: "選択してください" } %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
+  <div class="box-password">
+    <%= f.label :password, "パスワードを入力してください" %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>半角数字(<%= @minimum_password_length %>文字以上)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
+  <div class="box-password">
+    <%= f.label :password_confirmation, "確認のためもう一度パスワードを入力してください" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <div class="actions">
+  <div class="box-admin-login">
     <%= f.submit "新規作成" %>
   </div>
 <% end %>
-
-<%= render "admin/shared/links" %>

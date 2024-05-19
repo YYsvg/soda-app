@@ -1,12 +1,5 @@
-<div>
-<hr>
-
-<h1>マイページ</h1>
-
-<hr>
-
 <div class="container">
-  <div class="mycard"  style="width: 1000px;">
+  <div class="mycard mx-auto"  style="width: 1000px;">
     <div class="card-body col-sm-9">
       <ul class="tab-list list-unstyled">
             <li class="tab tab-active">
@@ -26,16 +19,12 @@
           <%= render 'layouts/year' %>
         </div>
       </div>
-
     </div>
   </div>
-</div>
-
+  <div>
+    <%= link_to "なまえの編集", mypage_edit_users_path, class:"link-btn new name" %>
+  </div>
+<br>
 <div>
-    設定ボタンからリンクさせる
-    <div><%= link_to "ユーザー情報の編集画面", mypage_edit_users_path %></div>
-<div>
-<div>
-丸ボタンをfixして左上に配置
-  <%= link_to "トップページへもどる", homes_path, class:"link-color" %>
-</div></br>
+  <%= link_to "トップページへ", homes_path, class:"submit-color back" %>
+</div><br><br>

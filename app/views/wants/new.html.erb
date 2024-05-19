@@ -1,7 +1,7 @@
-<div class="mx-auto" style="width: 400px;">
+<div class="mx-auto" style="width: 900px;">
   <% pagename = "これからやりたいことの入力画面" %>
   <h1><%= pagename %></h1>
-
+  <div class="d-flex align-items-center justify-content-center">
   <%= form_with model: @want, local: true do |f| %>
   
     <div>
@@ -20,13 +20,14 @@
       <%= f.number_field :price %>円
     </div>
 
-    <div><%= f.submit "入力する" %></div>
+    <div><%= f.submit "入力する", class:"submit-color back" %></div>
   <% end %>
-
-  <div>
-    <%= link_to "やりたいことの一覧へ", :wants %>
-    <%= link_to "作成、編集、削除", :new_want %>
+</div>
+  <div><br>
+    <%= link_to "やりたいことの一覧へ", :wants, class:"link-btn show back" %>
   </div>
+  
+  <br><br>
   <div>
-    <%= link_to "トップページへ戻る", root_path %>
+    <%= link_to "トップページへ戻る", homes_path, class:"submit-color" %>
   </div>

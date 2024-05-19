@@ -17,19 +17,19 @@ Rails.application.routes.draw do
     root to: 'dashboard#index'
   end
 
-  resources :users, only:[:edit, :update] do
+  resources :users, only:[:show, :edit, :update] do
     collection do
       get "mypage",       :to     => "users#mypage"
-      get "mypage/edit",  :to     => "users#edit"
-      put "mypage",       :to     => "users#update"
+      get "mypage/edit",  :to     => "users#edit#mypage"
+      put "mypage",       :to     => "users#update#mypage"
     end
   end
+
 
   devise_scope :user do
     root :to => "devise/sessions#new"
   end
 
-  #root :to =>  "homes#index"
   get 'homes', to: 'homes#index'
 
   resources :incomes

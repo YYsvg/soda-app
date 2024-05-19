@@ -1,28 +1,30 @@
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th>id</th>
-      <th>Name</th>
-      <th>区分</th>
-      <th>最終ログイン</th>
-    </tr>
-  </thead>
-  
-  <tbody>
-    <% @users.each do |user| %>
-        <tr>
-          <th scope="row"><%= user.id%></th>
-            <td><%= user.name %></td>
-            <td><% if user.role == true %>
-              <%= "おうち" %>
-            <% else %>
-              <%= "ユーザー" %>
-            <% end %>
+<div class="container">
+  <table class="table">
+    <thead class="admin-color">
+      <tr>
+        <th>id</th>
+        <th>Name</th>
+        <th>区分</th>
+        <th>最終ログイン</th>
+      </tr>
+    </thead>
 
-            <td>
-              <%= Time.zone.parse(user.updated_at.to_s).strftime('%Y/%m/%d') + '('+japanese_day_names[user.updated_at.wday] + ')' %>
-            </td>
-        </tr>
-    <% end %>
-  </tbody>
-</table>
+    <tbody>
+      <% @users.each do |user| %>
+          <tr>
+            <th scope="row"><%= user.id%></th>
+              <td><%= user.name %></td>
+              <td><% if user.role == true %>
+                <%= "おうち" %>
+              <% else %>
+                <%= "ユーザー" %>
+              <% end %>
+
+              <td>
+                <%= Time.zone.parse(user.updated_at.to_s).strftime('%Y/%m/%d') + '('+japanese_day_names[user.updated_at.wday] + ')' %>
+              </td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

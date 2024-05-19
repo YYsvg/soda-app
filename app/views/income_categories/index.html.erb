@@ -1,4 +1,4 @@
-<div class="mx-auto" style="width: 700px;">
+<div class="mx-auto" style="width: 900px;">
 <% pagename = "カテゴリの一覧" %>
   <h1 class="card-title"><%= pagename %></h1>
 
@@ -20,16 +20,16 @@
         <tr class="th">
           <td><%= income_category[:id] %></td>
           <td><%= income_category.name %></td>
-          <td><%= link_to "詳細", income_category_path(income_category), class: "btn btn-primary btn-sm" %></td>
-          <td><%= link_to "編集", edit_income_category_path(income_category.id) %></td>
-          <td><%= link_to "削除", income_category_path(income_category.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td></td>
+          <td><%= link_to "詳細", income_category_path(income_category), class: "link-btn show" %></td>
+          <td><%= link_to "編集", edit_income_category_path(income_category.id), class:"link-btn" %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-
+  <br>
   <div>
-    <%= link_to "トップページへ戻る", root_path %>
+    <%= link_to "トップページへ", homes_path, class:"submit-color back" %>
   </div>
 
 
