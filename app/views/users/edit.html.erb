@@ -1,4 +1,7 @@
-<div class="mx-auto col-sm-9" style="width: 700px;">
+<div class="container mycard">
+  <div class="card-body col-sm-9">
+
+
   <% pagename = "なまえの編集" %>
   <h1><%= pagename %></h1>
 
@@ -11,9 +14,11 @@
 <br><br>
 
   <div>
-    <%= f.submit "保存する", class:"link-btn new" %>
+    <%= f.submit "保存", class:"link-btn name name-btn" %>
   </div>
- <% end %>
+ <% end %><br><br><br>
+ <%= link_to "トップページへ", homes_path, class:"submit-color back" %>
+</div>
 </div>
 
-<div><%= link_to "トップページへもどる", homes_path, class:"submit-color" %></div>
+<br><br><br><br>

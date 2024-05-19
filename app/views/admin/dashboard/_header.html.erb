@@ -1,6 +1,6 @@
 <header>
-  <nav class="navbar admin">
-    <%= image_tag "goods.png" %>
+  <nav class="navbar container admin">
+    <i class="fa-solid fa-house-chimney"></i>
     <%= "管理者用画面　#{current_user.name} さん" %>
     <%= link_to 'ログアウトはこちら', destroy_user_session_path, method: :delete, class:"admin-logout" %>
   </nav>

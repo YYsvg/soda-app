@@ -16,6 +16,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Kiwi+Maru&family=RocknRoll+One&family=Zen+Kurenaido&family=Zen+Maru+Gothic&display=swap');
 @import 'bootstrap';
+@import "font-awesome";
 
 body {
   margin: 0;
@@ -70,7 +71,7 @@ body {
   transform: translateY(-1px);
 }
  // box-showクラスのものだけ表示
- .box-show {
+.box-show {
   display: block;
 }
 
@@ -170,6 +171,10 @@ body {
   padding: 10px;
   width: 30%;
 }
+.name-btn {
+  display: block;
+  margin: auto;
+}
 
 
 // ===================
@@ -211,7 +216,12 @@ body {
   display: block;
   margin: 20px auto;
 }
-
 .card-title,.card-text {
   text-align: center;
+}
+.right {
+  text-align: right;
+}
+.mycard {
+  width: 800px;
 }

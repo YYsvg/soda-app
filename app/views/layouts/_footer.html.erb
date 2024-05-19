@@ -1,5 +1,12 @@
 <footer>
-  <% if current_user.present? %>
-    <div class="col-sm-12 text-right"><%= link_to 'ログアウトはこちらから', destroy_user_session_path, method: :delete, class: "logout-color" %></div>
-  <% end %>
+  <div class="mycard">
+    <% if current_user.present? %>
+    <div class="card-text">
+      <%= link_to mypage_edit_users_path do %>
+        <i class="fa-solid fa-gears fa-3x card-text" style="color: #74C0FC;"></i>
+      <% end %>
+    </div>
+      <div class="col-sm-12 text-right"><%= link_to 'ログアウトはこちらから', destroy_user_session_path, method: :delete, class: "logout-color" %></div>
+    <% end %>
+  </div>
 </footer>
