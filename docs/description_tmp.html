@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>description.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="soda-app">soda App</h1>
+<h2 id="%E4%B8%BB%E3%81%AA%E6%A7%8B%E6%88%90%E8%A6%81%E7%B4%A0">主な構成要素</h2>
+<ul>
+<li>
+<p><code>app/</code></p>
+<ul>
+<li><code>models/</code>                    #モデル内訳
+<ul>
+<li><code>income_category.rb</code>       #収入カテゴリモデル</li>
+<li><code>income.rb</code>                #収入</li>
+<li><code>outcome_category.rb</code>      #支出カテゴリ</li>
+<li><code>outcome.rb</code>               #支出</li>
+<li><code>user.rb</code>                  #ユーザー</li>
+<li><code>want.rb</code>                  #やりたいこと</li>
+</ul>
+</li>
+<li><code>uploaders/</code>
+<ul>
+<li><code>image_uploader.rb</code>        #画像アップロードモデル</li>
+</ul>
+</li>
+<li><code>controllers/</code>               #コントローラーファイル
+<ul>
+<li><code>admin/</code>
+<ul>
+<li><code>base_controller.rb</code>    #管理者ログインの設定</li>
+<li><code>sessions_contoller.rb</code>   #ログイン機能</li>
+</ul>
+</li>
+<li><code>application_controller.rb</code>   #ログイン機能の設定</li>
+<li><code>homes_controller.rb</code>      #ログイン後のトップページコントローラ</li>
+<li><code>income_categories_controller.rb</code>     #収入カテゴリ</li>
+<li><code>incomes_controller.rb</code>               #収入</li>
+<li><code>omniauth_callbacks_controller.rb</code>    #LINEログイン</li>
+<li><code>outcome_categories_controller.rb</code>    #支出カテゴリ</li>
+<li><code>outcomes_controller.rb</code>              #支出</li>
+<li><code>users_controller.rb</code>                 #ユーザー</li>
+<li><code>wants_controller.rb</code>                 #やりたいこと</li>
+</ul>
+</li>
+<li><code>views/</code>                     #ビューファイル
+<ul>
+<li><code>dashboard/</code>
+<ul>
+<li><code>index.html.erb</code>             #管理者の一覧ビュー</li>
+<li><code>_header.html.erb</code>           #ヘッダー</li>
+</ul>
+</li>
+<li><code>registrations/</code>
+<ul>
+<li><code>new.html.erb</code>               #管理者新規作成（名前、メール）</li>
+</ul>
+</li>
+<li><code>sessions/</code>
+<ul>
+<li><code>new.html.erb</code>               #管理者ログイン</li>
+</ul>
+</li>
+<li><code>devise/</code>
+<ul>
+<li><code>registrations/new.html.erb</code>      #ユーザー新規作成画面（現時点ではLINEログインのみ有効）</li>
+<li><code>sessions/new.html.erb</code>           #ユーザーログイン画面</li>
+</ul>
+</li>
+<li><code>homes/index.html.erb</code>              #ログイン後のトップページ</li>
+<li><code>income_categories/</code>                #収入カテゴリの一覧、追加、編集</li>
+<li><code>incomes/</code>                          #収入の一覧、新規作成、詳細、編集</li>
+<li><code>layouts/</code>                          #全体のレイアウト
+<ul>
+<li><code>_header.html.erb</code>                   #トップページのヘッダーテンプレート</li>
+<li><code>_footer.html.erb</code>                   #トップページのフッターテンプレート</li>
+<li><code>_form.html.erb</code>                     #トップ・タブ切り替え（支出の入力画面）</li>
+<li><code>_list.html.erb</code>                     #トップ・タブ切り替え（収入の入力画面）</li>
+<li><code>_month.html.erb</code>                    #マイページ・タブ切り替え（月間レポート）</li>
+<li><code>_year.html.erb</code>                     #マイページ・タブ切り替え（年間レポート）</li>
+<li><code>admin.html.erb</code>                     #管理者画面のレイアウト</li>
+<li><code>application.html.erb</code>               #ユーザー画面のレイアウト</li>
+</ul>
+</li>
+<li><code>outcome_categories/</code>               #支出カテゴリの一覧、追加、編集</li>
+<li><code>outcomes/</code>                         #支出の一覧、新規作成、詳細、編集</li>
+<li><code>users/</code>
+<ul>
+<li><code>edit.html.erb</code>                   #ユーザーの名前を編集</li>
+<li><code>mypage.html.erb</code>                 #マイページ画面のレイアウト</li>
+</ul>
+</li>
+<li><code>wants/</code>                            #やりたいことの一覧、追加、編集</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>config/</code>                               #設定ファイル</p>
+<ul>
+<li><code>devise.rb</code>                            #管理者ログイン時に名前で認証できる</li>
+<li><code>rotes.rb</code>                             #ルーティングの設定</li>
+</ul>
+</li>
+<li>
+<p><code>db/</code>                                   #データベース関連のファイル</p>
+<ul>
+<li><code>migrate/</code>                               #マイグレーションファイル
+<ul>
+<li><code>20240425052831_devise_create_users.rb</code>        #ユーザーのテーブル作成マイグレーション</li>
+<li><code>20240425055230_add_column_to_users.rb</code>        #ユーザーにLINEログインに必要なカラムを追加</li>
+<li><code>20240425064523_create_income_categories.rb</code>   #収入カテゴリのテーブル作成</li>
+<li><code>20240425064744_create_outcome_categories.rb</code>  #支出カテゴリのテーブル作成</li>
+<li><code>20240425064841_create_incomes.rb</code>             #収入テーブル</li>
+<li><code>20240425064852_create_outcomes.rb</code>            #支出テーブル</li>
+<li><code>20240425064904_create_wants.rb</code>               #やりたいことテーブル</li>
+<li><code>20240501022026_add_role_to_user.rb</code>      #ユーザーのテーブルに管理者用のカラム(role)を追加</li>
+</ul>
+</li>
+<li><code>scheme.rb</code>                               #テーブルの詳細</li>
+<li><code>seeds.rb</code>                                #収入カテゴリ、支出カテゴリの初期設定</li>
+</ul>
+</li>
+<li>
+<p><code>Gemfile</code>                   #使用するGemのリスト
+gem 'rails', '5.2.4.2'          #Ruby on Railsのバージョン5.0系を使用
+gem 'devise'                    #認証機能を提供するDevise
+gem 'omniauth-line'             #LINEログイン機能を追加
+gem 'omniauth-rails_csrf_protection'
+gem 'dotenv-rails'              #環境変数を設定
+gem 'bootstrap', '~&gt; 4.6.0'     #bootstrapを導入
+gem 'jquery-rails'              #jqueryを導入
+gem 'carrierwave'               #画像機能を追加
+gem 'mini_magick'</p>
+</li>
+<li>
+<p><code>README.md</code>                 #プロジェクトの概要と説明</p>
+</li>
+<li>
+<p><code>docs/</code></p>
+<ul>
+<li><code>description.md</code>          #プロジェクトの詳細説明</li>
+<li><code>description.pdf</code>         #プロジェクトの詳細説明のPDF</li>
+</ul>
+</li>
+</ul>
+<br>
+<h2 id="%E4%B8%BB%E8%A6%81%E3%81%AA%E3%82%B3%E3%83%BC%E3%83%89%E3%82%B9%E3%83%8B%E3%83%9A%E3%83%83%E3%83%88">主要なコードスニペット</h2>
+<h3 id="appmodelsuserrb">app/models/user.rb</h3>
+<h4 id="user%E3%83%A2%E3%83%87%E3%83%AB">Userモデル</h4>
+<pre class="hljs"><code><div>class User &lt; ApplicationRecord
+  #ユーザーと収入、支出、やりたいことを関連づけ
+  has_many :incomes
+  has_many :outcomes
+  has_many :wants
+
+  #ログイン時のバリデーションを設定
+  validates :name,   presence: true
+  validates :role,  inclusion: {in: [true, false]}
+
+  # deviseの設定、LINEと連携
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: %i[line]
+
+  def social_plofile(provider)
+    social_plofile.select { |sp| sp.provider == provider.to_s }.first
+  end
+
+  def set_values(omniauth)
+    return if provider.to_s != omniauth[&quot;provider&quot;].to_s || uid != omniauth[&quot;uid&quot;]
+    credentials = omniauth[&quot;credentials&quot;]
+    info = omniauth[&quot;info&quot;]
+
+    access_token = credentials[&quot;refresh_token&quot;]
+    access_secret = credentials[&quot;secret&quot;]
+    credentials = credentials.to_json
+    name = info[&quot;name&quot;]
+  end
+
+  def set_values_by_raw_info(raw_info)
+    self.raw_info = raw_info.to_json
+    self.save!
+  end
+
+  ＃管理者とユーザーを区別
+  def admin?
+    role == true
+  end
+end
+</div></code></pre>
+<h3 id="appcontrollersuserscontrollerrb">/app/controllers/users_controller.rb</h3>
+<h4 id="user%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%A9%E3%83%BC">Userコントローラー</h4>
+<pre class="hljs"><code><div>class UsersController &lt; ApplicationController
+  before_action :authenticate
+  before_action :set_user
+
+  def mypage
+
+    # 収入の総計
+    @income_total = current_user.incomes.sum(:price)
+    @outcome_total = current_user.outcomes.sum(:price)
+    @balance = @income_total - @outcome_total
+
+    # 年、月の取得
+    @year = Date.today.year
+    @month = Date.today.month
+
+    # 月毎の収支
+    @monthly_incomes = (1..12).map do |month|
+      start_date = Date.new(@year, month, 1)
+      end_date = start_date.end_of_month
+      {
+        month: start_date.strftime(&quot;%-m月&quot;),
+        incomes: current_user.incomes.where(created_at: start_date..end_date).sum(:price)
+      }
+    end
+
+    @monthly_outcomes = (1..12).map do |month|
+      start_date = Date.new(@year, month, 1)
+      end_date = start_date.end_of_month
+      category_outcomes = {}
+
+      OutcomeCategory.all.each do |outcome_category|
+        category_outcome_price = current_user.outcomes.where(created_at: start_date..end_date, outcome_category_id: outcome_category.id).sum(:price)
+        category_outcomes[outcome_category.name] = category_outcome_price
+      end
+        {
+          month: start_date.strftime(&quot;%-m月&quot;),
+          total_outcomes: current_user.outcomes.where(created_at: start_date..end_date).sum(:price),
+          category_outcomes: category_outcomes
+        }
+    end
+
+
+    # 当月の収支
+    current_month_income = @monthly_incomes.find { |income| income[:month] == Date.current.strftime(&quot;%-m月&quot;) }
+    @current_month_income_value = current_month_income[:incomes]
+
+    current_month_outcome = @monthly_outcomes.find { |outcome| outcome[:month] == Date.current.strftime(&quot;%-m月&quot;) }
+    @current_month_outcome_value = current_month_outcome[:total_outcomes]
+    @current_month_outcome_name = current_month_outcome[:total_outcomes]
+
+    # 年間収支
+    @yearly_incomes_total  = @monthly_incomes.sum { |income| income[:incomes] }
+    @yearly_outcomes_total = @monthly_outcomes.sum { |outcome| outcome[:total_outcomes] }
+    @yearly_balance = @yearly_incomes_total - @yearly_outcomes_total
+  end
+
+  #名前の編集、更新
+  def edit
+    @user = User.find(current_user.id)
+  end
+
+  def update
+    @user = User.find(current_user.id)
+    @user = @user.update(user_params)
+    redirect_to homes_path
+  end
+
+
+  private
+  def set_user
+    @user = current_user
+  end
+
+  def user_params
+    params.permit(:name)
+  end
+
+end
+</div></code></pre>
+<h3 id="appcontrollersomniauthcallbackscontrollerrb">/app/controllers/omniauth_callbacks_controller.rb</h3>
+<h5 id="line%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E6%A9%9F%E8%83%BD%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%A9%E3%83%BC">LINEログイン機能コントローラー</h5>
+<pre class="hljs"><code><div>class OmniauthCallbacksController &lt; Devise::OmniauthCallbacksController
+  def line; basic_action end
+
+  private
+  def basic_action
+    @omniauth = request.env[&quot;omniauth.auth&quot;]
+    if @omniauth.present?
+      @profile = User.find_or_initialize_by(provider: @omniauth[&quot;provider&quot;], uid: @omniauth[&quot;uid&quot;])
+      if @profile.email.blank?
+        email = @omniauth[&quot;info&quot;][&quot;email&quot;] ? @omniauth[&quot;info&quot;][&quot;email&quot;] : &quot;#{@omniauth[&quot;uid&quot;]}-#{@omniauth[&quot;provider&quot;]}@example.com&quot;
+        @profile = current_user || User.create!(
+          provider: @omniauth[&quot;provider&quot;],
+          uid: @omniauth[&quot;uid&quot;],
+          email: email,
+          name: @omniauth[&quot;info&quot;][&quot;name&quot;],
+          password: Devise.friendly_token[0, 20]
+          )
+      end
+      @profile.set_values(@omniauth)
+      sign_in(:user, @profile)
+    end
+    flash[:notice] = &quot;ログインしました&quot;
+    redirect_to homes_path
+  end
+
+  def fake_email(uid, provider)
+    &quot;#{auth.uid}-#{auth.provider}@example.com&quot;
+  end
+end
+</div></code></pre>
+<h3 id="appcontrollersadminbasecontrollerrb">/app/controllers/admin/base_controller.rb</h3>
+<h4 id="%E7%AE%A1%E7%90%86%E8%80%85%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E3%81%AE%E8%A8%AD%E5%AE%9A">管理者ログインの設定</h4>
+<pre class="hljs"><code><div>class Admin::BaseController &lt; ApplicationController
+  before_action :authenticate_user!
+  before_action :check_admin
+
+  #ビューはadminレイアウトを使用する
+  layout &quot;admin&quot;
+
+
+  private
+
+  def check_admin
+    unless current_user&amp;.admin?
+      redirect_to homes_path, alert: '権限がありません。'
+    end
+  end
+end
+</div></code></pre>
+<h3 id="appcontrollersadminsessionscontrollerrb">/app/controllers/admin/sessions_controller.rb</h3>
+<h4 id="%E7%AE%A1%E7%90%86%E8%80%85%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E6%A9%9F%E8%83%BD">管理者ログイン機能</h4>
+<pre class="hljs"><code><div>class Admin::SessionsController &lt; Devise::SessionsController
+  before_action :configure_sign_in_params, only: [:new,:create,:destroy]
+
+  #オーバーライド
+ 
+  # GET /resource/sign_in
+  def new
+    super
+  end
+
+  # POST /resource/sign_in
+  def create
+    super
+  end
+
+  protected
+
+  #名前（name）でログインを許可する
+   def configure_sign_in_params
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:name])
+  end
+  
+  # ログイン後のリダイレクト先設定
+  def after_sign_in_path_for(resource_or_scope)
+    admin_root_url
+  end
+
+  def after_sign_out_path_for(resource)
+    admin_login_path
+  end
+
+end
+</div></code></pre>
+<h3 id="appcontrollersapplicationcontrollerrb">/app/controllers/application_controller.rb</h3>
+<h4 id="%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E6%A9%9F%E8%83%BD%E3%81%AE%E8%A8%AD%E5%AE%9A">ログイン機能の設定</h4>
+<pre class="hljs"><code><div>class ApplicationController &lt; ActionController::Base
+  def authenticate
+    # 登録していないユーザーはログイン画面に戻る
+    redirect_to new_user_session_url unless user_signed_in?
+  end
+
+  protected
+    # 管理者ログイン後のリダイレクト先
+    def after_sign_in_path_for(resource_or_scope)
+      if current_user.role == true
+        admin_root_path
+      else
+        homes_path
+      end
+    end
+
+    # ログアウト後のリダイレクト先
+    def after_sign_out_path_for(resource_or_scope)
+      # ログイン画面へ遷移
+      new_user_session_url
+    end
+
+    def configure_permitted_parameters
+      # 管理者用のカラムを許可
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:email])
+      devise_parameter_sanitizer.permit(:sign_in, keys: [:name, :email])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:role, :name, :email, :password, :password_confirmation])
+    end
+  end
+</div></code></pre>
+<h3 id="appmodelsoutcomerb">/app/models/outcome.rb</h3>
+<h4 id="%E6%94%AF%E5%87%BA%E3%83%A2%E3%83%87%E3%83%AB">支出モデル</h4>
+<pre class="hljs"><code><div>class Outcome &lt; ApplicationRecord
+  #支出カテゴリと、ユーザーに関連付けを行う
+  belongs_to :outcome_category,   dependent: :destroy
+  belongs_to :user
+
+  #画像を追加できる
+  mount_uploader :image, ImageUploader
+end
+</div></code></pre>
+<h3 id="appassetsjavascriptsapplicationjs">/app/assets/javascripts/application.js</h3>
+<h4 id="%E3%82%BF%E3%83%96%E5%88%87%E3%82%8A%E6%9B%BF%E3%81%88%E6%A9%9F%E8%83%BD">タブ切り替え機能</h4>
+<pre class="hljs"><code><div>//= require rails-ujs
+//= require activestorage
+//= require turbolinks
+//= require_tree .
+
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
+
+// タブの切り替え
+// turbolinksの無効化
+$(document).on('turbolinks:load', function() {
+$(function() {
+  // .tabがクリックされたときを指定
+  $('.tab').click(function(){
+    // 今ある.tab-activeを削除
+    $('.tab-active').removeClass('tab-active');
+    // クリックされた.tabに.tab-activeを追加
+    $(this).addClass('tab-active');
+
+    // 今ある.box-showを削除
+    $('.box-show').removeClass('box-show');
+    
+    // indexに.tabのindex番号を代入
+    const index = $(this).index();
+    // .tabboxとindexの番号が同じ要素に.box-showを追加
+    $('.tabbox').eq(index).addClass('box-show');
+  });
+});
+});
+</div></code></pre>
+<h3 id="appviewshomesindexhtmlerb">/app/views/homes/index.html.erb</h3>
+<h4 id="%E3%83%9B%E3%83%BC%E3%83%A0%E7%94%BB%E9%9D%A2">ホーム画面</h4>
+<pre class="hljs"><code><div>&lt;div class=&quot;container mycard&quot;&gt;
+  &lt;div class=&quot;card-body col-sm-9&quot;&gt;
+  #タブの名前を表示
+    &lt;ul class=&quot;tab-list list-unstyled&quot;&gt;
+      &lt;li class=&quot;tab tab-active&quot;&gt;
+        &lt;%= @outcomename %&gt;
+      &lt;/li&gt;
+      &lt;li class=&quot;tab&quot;&gt;
+        &lt;%= @incomename %&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;&lt;/br&gt;
+
+    &lt;h4 class=&quot;card-title&quot;&gt;おこづかいちょう&lt;/h4&gt;&lt;br&gt;
+
+    #選択されたタブを表示させる
+    &lt;h5 class=&quot;card-text&quot;&gt;
+    &lt;div&gt;
+      &lt;div class=&quot;tabbox box-show &quot;&gt;
+        &lt;%= render 'layouts/list' %&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;tabbox&quot;&gt;
+        &lt;%= render 'layouts/form' %&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</div></code></pre>
+<h3 id="appviewslayoutslisthtmlerb">/app/views/layouts/_list.html.erb</h3>
+<h4 id="%E6%94%AF%E5%87%BA%E3%81%AE%E5%85%A5%E5%8A%9B%E7%94%BB%E9%9D%A2">支出の入力画面</h4>
+<pre class="hljs"><code><div>#フォームを生成
+&lt;%= form_with model: @outcome, local: true do |f| %&gt;
+    &lt;div&gt;
+      &lt;% @outcome_categories.each do |outcome_category| %&gt;
+      &lt;div&gt;
+        &lt;%= f.radio_button(:outcome_category_id, &quot;#{outcome_category.id}&quot;) %&gt;
+        &lt;%= f.label :outcome_category_id, &quot;#{outcome_category.name}&quot;, {value: outcome_category.id.to_i, style: &quot;display: inline-block;&quot;} %&gt;
+      &lt;/div&gt;
+      &lt;% end %&gt;
+    &lt;/div&gt;&lt;br&gt;
+
+    &lt;div&gt;
+      &lt;%= f.label :price,&quot;金額　&quot; %&gt;
+      &lt;%= f.number_field :price %&gt;
+    &lt;/div&gt;&lt;br&gt;
+    &lt;div&gt;
+      &lt;%= f.label :memo,&quot;メモ　&quot; %&gt;
+      &lt;%= f.text_field :memo %&gt;
+    &lt;/div&gt;&lt;br&gt;
+    &lt;div&gt;
+      &lt;%= f.label :image,&quot;写真もどうぞ　&quot; %&gt;
+      &lt;%= f.file_field :image %&gt;
+    &lt;/div&gt;&lt;br&gt;
+    &lt;div&gt;&lt;%= f.submit &quot;入力&quot;, class:&quot;submit-color income&quot;%&gt;&lt;/div&gt;&lt;br&gt;
+  &lt;% end %&gt;
+
+  #リンク先を表示
+  &lt;div&gt;
+    &lt;ul class=&quot;link-list&quot;&gt;
+      &lt;li&gt;&lt;%= link_to &quot;マイページへ&quot;, mypage_users_path, class:&quot;link-color&quot; %&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;%= link_to &quot;支出の一覧へ&quot;, :outcomes, class:&quot;link-color&quot; %&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;%= link_to &quot;やりたいことリストへ&quot;, :wants, class:&quot;link-color&quot; %&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;%= link_to &quot;支出カテゴリの追加&quot;, :new_outcome_category, class:&quot;link-color&quot; %&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+
+</div></code></pre>
+<h3 id="appviewslayoutsmonthhtmlerb">/app/views/layouts/_month.html.erb</h3>
+<h4 id="%E3%83%9E%E3%82%A4%E3%83%9A%E3%83%BC%E3%82%B8%E3%83%BB%E6%9C%88%E6%AF%8E%E3%81%AE%E9%9B%86%E8%A8%88%E3%83%AC%E3%83%9D%E3%83%BC%E3%83%88%E7%94%BB%E9%9D%A2">マイページ・月毎の集計レポート画面</h4>
+<pre class="hljs"><code><div>&lt;div&gt;
+  &lt;h2&gt;&lt;%= &quot;#{@year}年#{@month}月&quot; %&gt;&lt;/h2&gt;
+  #月の支出、収入合計を表示
+  &lt;h3&gt;
+    &lt;%= &quot;支出　#{number_to_currency(@current_month_outcome_value, unit: &quot;&quot;,separator: '.', delimiter: ',', precision: 0)} 円　&quot; %&gt; | &lt;%= &quot;　収入　#{number_to_currency(@current_month_income_value, unit: &quot;&quot;, separator: '.', delimiter: ',', precision: 0)} 円&quot; %&gt;
+  &lt;/h3&gt;
+&lt;/div&gt;
+
+#月毎に、支出の合計とカテゴリごとの合計を表示
+&lt;div class=&quot;texts-wrapper&quot;&gt;
+  &lt;div class=&quot;contents-title text-center&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+      &lt;% @monthly_outcomes.each do |monthly_data| %&gt;
+        &lt;div class=&quot;col-12 col-md-6 col-lg-4&quot;&gt;
+          &lt;div class=&quot;card h-70&quot;&gt;
+            &lt;div class=&quot;card-body align-items-center&quot;&gt;
+                &lt;br class=&quot;card-title&quot;&gt;
+                  &lt;h2&gt;&lt;%= monthly_data[:month] %&gt;&lt;/h2&gt;&lt;/br&gt;
+                  &lt;h3&gt;合計　　&lt;%= number_to_currency(monthly_data[:total_outcomes], unit: &quot;&quot;, separator: &quot;.&quot;, delimiter: &quot;,&quot;, precision:0) %&gt;円
+                &lt;/h3&gt;
+            &lt;br&gt;
+            &lt;ul&gt;
+              &lt;% monthly_data[:category_outcomes].each do |category_name, category_total| %&gt;
+                &lt;li class=&quot;category_list&quot;&gt;&lt;%= category_name %&gt;　&lt;%= number_to_currency(category_total, unit: &quot;&quot;, separator: &quot;.&quot;, delimiter: &quot;,&quot;, precision:0) %&gt;円&lt;/li&gt;
+              &lt;% end %&gt;
+            &lt;/ul&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;% end %&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</div></code></pre>
+<h3 id="appviewslayoutsyearhtmlerb">/app/views/layouts/_year.html.erb</h3>
+<p>####　　マイページ・年ごとの集計レポート画面</p>
+<pre class="hljs"><code><div>&lt;div&gt;
+  &lt;h2&gt;&lt;%= &quot;#{@year}年1月1日〜12月31日&quot; %&gt;&lt;/h2&gt;
+
+  #支出と収入の合計を表示
+  &lt;h3&gt;
+    &lt;%= &quot;支出　#{number_to_currency(@yearly_outcomes_total, unit: &quot;&quot;,separator: '.', delimiter: ',', precision: 0)} 円　&quot; %&gt; | &lt;%= &quot;　収入　#{number_to_currency(@yearly_incomes_total, unit: &quot;&quot;, separator: '.', delimiter: ',', precision: 0)} 円&quot; %&gt;
+  &lt;/h3&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;mx-auto&quot;&gt;
+  &lt;div class=&quot;card-deck&quot;&gt;
+    &lt;div class=&quot;card&quot;&gt;
+      &lt;div class=&quot;card-body&quot;&gt;&lt;br&gt;
+        &lt;h3 class=&quot;card-title&quot;&gt;年間収入&lt;/h3&gt;&lt;br&gt;
+        &lt;h4 class=&quot;card-text&quot;&gt;
+        &lt;%= @yearly_incomes_total.to_s(:delimited) %&gt;円
+        &lt;/h4&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;br&gt;
+    #収入、支出、残高を表示
+    &lt;div class=&quot;card&quot;&gt;
+      &lt;div class=&quot;card-body&quot;&gt;&lt;br&gt;
+        &lt;h3 class=&quot;card-title&quot;&gt;年間支出&lt;/h3&gt;&lt;br&gt;
+        &lt;h4 class=&quot;card-text&quot;&gt;
+          &lt;%= @yearly_outcomes_total.to_s(:delimited) %&gt;円
+        &lt;/h4&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;card&quot;&gt;
+      &lt;div class=&quot;card-body&quot;&gt;&lt;br&gt;
+        &lt;h3 class=&quot;card-title&quot;&gt;残高&lt;/h3&gt;&lt;br&gt;
+        &lt;h4 class=&quot;card-text&quot;&gt;
+          &lt;%= @yearly_balance.to_s(:delimited) %&gt;円
+        &lt;/h4&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+</div></code></pre>
+<p>######　以上となります。</p>
+<h4 id="%E6%9C%80%E5%BE%8C%E3%81%BE%E3%81%A7%E3%81%94%E8%A6%A7%E3%81%84%E3%81%9F%E3%81%A0%E3%81%8D%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A8%E3%81%86%E3%81%94%E3%81%96%E3%81%84%E3%81%BE%E3%81%97%E3%81%9F">最後までご覧いただき、ありがとうございました。</h4>
+
+</body>
+</html>

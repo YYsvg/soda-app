@@ -28,7 +28,7 @@ class Admin::SessionsController < Devise::SessionsController
     devise_parameter_sanitizer.permit(:sign_in, keys: [:name])
   end
   
-  # ログイン後のリダイレクト先　これをみている
+  # ログイン後のリダイレクト先はこちら
   def after_sign_in_path_for(resource_or_scope)
     admin_root_url
   end
