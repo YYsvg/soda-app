@@ -1,5 +1,8 @@
 # soda App
 
+
+##### 5/23修正版
+
 ## 主な構成要素
 - `app/`
   - `models/`                    #モデル内訳
@@ -14,7 +17,7 @@
   - `controllers/`               #コントローラーファイル
     - `admin/`
       - `base_controller.rb`    #管理者ログインの設定
-      - `sessions_contoller.rb`   #ログイン機能
+      - `sessions_contoller.rb`
     - `application_controller.rb`   #ログイン機能の設定
     - `homes_controller.rb`      #ログイン後のトップページコントローラ
     - `income_categories_controller.rb`     #収入カテゴリ
@@ -35,7 +38,7 @@
     - `devise/`
       - `registrations/new.html.erb`      #ユーザー新規作成画面（現時点ではLINEログインのみ有効）
       - `sessions/new.html.erb`           #ユーザーログイン画面
-    - `homes/index.html.erb`              #ログイン後のトップページ
+    - `homes/index.html.erb`              #ログイン後のトップページ(タブform,list)
     - `income_categories/`                #収入カテゴリの一覧、追加、編集
     - `incomes/`                          #収入の一覧、新規作成、詳細、編集
     - `layouts/`                          #全体のレイアウト
@@ -44,18 +47,20 @@
       - `_form.html.erb`                     #トップ・タブ切り替え（支出の入力画面）
       - `_list.html.erb`                     #トップ・タブ切り替え（収入の入力画面）
       - `_month.html.erb`                    #マイページ・タブ切り替え（月間レポート）
+      - `_month_outcome.html.erb`            # タブ（month）
+      - `_month_income.html.erb`
       - `_year.html.erb`                     #マイページ・タブ切り替え（年間レポート）
-      - `admin.html.erb`                     #管理者画面のレイアウト
+      - `admin.html.erb`                     #管理者画面のレイアウト(dashboard)
       - `application.html.erb`               #ユーザー画面のレイアウト
     - `outcome_categories/`               #支出カテゴリの一覧、追加、編集
     - `outcomes/`                         #支出の一覧、新規作成、詳細、編集
     - `users/`
         - `edit.html.erb`                   #ユーザーの名前を編集
-        - `mypage.html.erb`                 #マイページ画面のレイアウト
-    - `wants/`                            #やりたいことの一覧、追加、編集
-- `config/`                               #設定ファイル
-    - `devise.rb`                            #管理者ログイン時に名前で認証できる
-    - `rotes.rb`                             #ルーティングの設定
+        - `mypage.html.erb`                 #マイページ画面のレイアウト(タブmonth,year)
+    - `wants/`                            　#やりたいことの一覧、追加、編集
+- `config/`                               　#設定ファイル
+    - `devise.rb`                             　#管理者ログイン時に名前で認証できる
+    - `rotes.rb`                               #ルーティングの設定
 - `db/`                                   #データベース関連のファイル
   - `migrate/`                               #マイグレーションファイル
     - `20240425052831_devise_create_users.rb`        #ユーザーのテーブル作成マイグレーション
@@ -88,7 +93,6 @@
 
 
 ## 主要なコードスニペット
-
 
 ### app/models/user.rb
 #### Userモデル
@@ -154,15 +158,24 @@ class UsersController < ApplicationController
     @month = Date.today.month
 
     # 月毎の収支
+    # 月ごとの収入
     @monthly_incomes = (1..12).map do |month|
       start_date = Date.new(@year, month, 1)
       end_date = start_date.end_of_month
-      {
-        month: start_date.strftime("%-m月"),
-        incomes: current_user.incomes.where(created_at: start_date..end_date).sum(:price)
-      }
+      category_incomes = {}
+
+      IncomeCategory.all.each do |income_category|
+        category_income_price = current_user.incomes.where(created_at: start_date..end_date, income_category_id: income_category.id).sum(:price)
+        category_incomes[income_category.name] = category_income_price
+      end
+        {
+          month: start_date.strftime("%-m月"),
+          total_incomes: current_user.incomes.where(created_at: start_date..end_date).sum(:price),
+          category_incomes: category_incomes
+        }
     end
 
+    # 月ごとの支出
     @monthly_outcomes = (1..12).map do |month|
       start_date = Date.new(@year, month, 1)
       end_date = start_date.end_of_month
@@ -182,19 +195,18 @@ class UsersController < ApplicationController
 
     # 当月の収支
     current_month_income = @monthly_incomes.find { |income| income[:month] == Date.current.strftime("%-m月") }
-    @current_month_income_value = current_month_income[:incomes]
+    @current_month_income_value = current_month_income[:total_incomes]
 
     current_month_outcome = @monthly_outcomes.find { |outcome| outcome[:month] == Date.current.strftime("%-m月") }
     @current_month_outcome_value = current_month_outcome[:total_outcomes]
     @current_month_outcome_name = current_month_outcome[:total_outcomes]
 
     # 年間収支
-    @yearly_incomes_total  = @monthly_incomes.sum { |income| income[:incomes] }
+    @yearly_incomes_total  = @monthly_incomes.sum { |income| income[:total_incomes] }
     @yearly_outcomes_total = @monthly_outcomes.sum { |outcome| outcome[:total_outcomes] }
     @yearly_balance = @yearly_incomes_total - @yearly_outcomes_total
   end
 
-  #名前の編集、更新
   def edit
     @user = User.find(current_user.id)
   end
@@ -204,7 +216,6 @@ class UsersController < ApplicationController
     @user = @user.update(user_params)
     redirect_to homes_path
   end
-
 
   private
   def set_user
@@ -259,10 +270,8 @@ end
 class Admin::BaseController < ApplicationController
   before_action :authenticate_user!
   before_action :check_admin
-
-  #ビューはadminレイアウトを使用する
+  before_action :configure_permitted_parameters, if: :devise_controller?
   layout "admin"
-
 
   private
 
@@ -272,6 +281,7 @@ class Admin::BaseController < ApplicationController
     end
   end
 end
+
 ``````
 
 
@@ -279,10 +289,9 @@ end
 #### 管理者ログイン機能
 ``````
 class Admin::SessionsController < Devise::SessionsController
-  before_action :configure_sign_in_params, only: [:new,:create,:destroy]
+  before_action :configure_permitted_parameters, only: [:new,:create,:destroy]
 
   #オーバーライド
- 
   # GET /resource/sign_in
   def new
     super
@@ -294,13 +303,8 @@ class Admin::SessionsController < Devise::SessionsController
   end
 
   protected
-
-  #名前（name）でログインを許可する
-   def configure_sign_in_params
-    devise_parameter_sanitizer.permit(:sign_in, keys: [:name])
-  end
   
-  # ログイン後のリダイレクト先設定
+  # ログイン後のリダイレクト先を設定
   def after_sign_in_path_for(resource_or_scope)
     admin_root_url
   end
@@ -310,6 +314,7 @@ class Admin::SessionsController < Devise::SessionsController
   end
 
 end
+
 ``````
 
 
@@ -317,6 +322,8 @@ end
 #### ログイン機能の設定
 ``````
 class ApplicationController < ActionController::Base
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
   def authenticate
     # 登録していないユーザーはログイン画面に戻る
     redirect_to new_user_session_url unless user_signed_in?
@@ -339,10 +346,10 @@ class ApplicationController < ActionController::Base
     end
 
     def configure_permitted_parameters
-      # 管理者用のカラムを許可
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:email])
-      devise_parameter_sanitizer.permit(:sign_in, keys: [:name, :email])
-      devise_parameter_sanitizer.permit(:account_update, keys: [:role, :name, :email, :password, :password_confirmation])
+      # 管理者登録時に許可するパラメータを設定
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :role])
+      devise_parameter_sanitizer.permit(:sign_in, keys: [:name, :email, :role])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :email, :role])
     end
   end
 ``````
@@ -377,19 +384,11 @@ end
 // turbolinksの無効化
 $(document).on('turbolinks:load', function() {
 $(function() {
-  // .tabがクリックされたときを指定
   $('.tab').click(function(){
-    // 今ある.tab-activeを削除
     $('.tab-active').removeClass('tab-active');
-    // クリックされた.tabに.tab-activeを追加
     $(this).addClass('tab-active');
-
-    // 今ある.box-showを削除
     $('.box-show').removeClass('box-show');
-    
-    // indexに.tabのindex番号を代入
     const index = $(this).index();
-    // .tabboxとindexの番号が同じ要素に.box-showを追加
     $('.tabbox').eq(index).addClass('box-show');
   });
 });

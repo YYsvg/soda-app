@@ -12,6 +12,12 @@
       <h4 class="card-title"></h4><br>
       <h5 class="card-text">
       <div>
+        <h2><%= "#{@year}年#{@month}月" %></h2>
+        <h3>
+          <%= "支出　#{number_to_currency(@current_month_outcome_value, unit: "",separator: '.', delimiter: ',', precision: 0)} 円　" %> | <%= "　収入　#{number_to_currency(@current_month_income_value, unit: "", separator: '.', delimiter: ',', precision: 0)} 円" %>
+        </h3>
+      </div>
+      <div>
         <div class="tabbox box-show ">
           <%= render 'layouts/month' %>
         </div>

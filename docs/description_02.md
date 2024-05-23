@@ -73,15 +73,36 @@
 ### /app/views/layouts/_month.html.erb
 #### マイページ・月毎の集計レポート画面
 ``````
-<div>
-  <h2><%= "#{@year}年#{@month}月" %></h2>
-  #月の支出、収入合計を表示
-  <h3>
-    <%= "支出　#{number_to_currency(@current_month_outcome_value, unit: "",separator: '.', delimiter: ',', precision: 0)} 円　" %> | <%= "　収入　#{number_to_currency(@current_month_income_value, unit: "", separator: '.', delimiter: ',', precision: 0)} 円" %>
-  </h3>
-</div>
+<div class="container">
+  <div class="mycard mx-auto"  style="width: 1000px;">
+    <div class="card-body col-sm-9">
+      <ul class="tab-list list-unstyled">
+            <li class="mytab mytab-active">
+              <%= "支出" %>
+            </li>
+            <li class="mytab">
+              <%= "収入" %>
+            </li>
+      </ul>
+      <h4 class="card-title"></h4><br>
+      <h5 class="card-text">
+      <div>
+        <div class="mytabbox mybox-show ">
+          <%= render 'layouts/month_outcome' %>
+        </div>
+        <div class="mytabbox">
+          <%= render 'layouts/month_income' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<br>
+``````
 
-#月毎に、支出の合計とカテゴリごとの合計を表示
+
+### /app/views/layouts/_month_outcome.html.erb
+#### 月ごとの支出画面
+``````
 <div class="texts-wrapper">
   <div class="contents-title text-center">
     <div class="row">
@@ -107,6 +128,8 @@
   </div>
 </div>
 ``````
+
+
 ### /app/views/layouts/_year.html.erb
 #### マイページ・年ごとの集計レポート画面
 ``````
@@ -153,5 +176,6 @@
 
 
 ``````
-######　以上となります。
-### 最後までご覧いただき、ありがとうございました。
+
+#### 以上となります。
+#### 最後までご覧いただき、ありがとうございました。

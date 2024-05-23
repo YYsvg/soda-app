@@ -1,8 +1,7 @@
 # frozen_string_literal: true, if: :devise_controller?
 
 class ApplicationController < ActionController::Base
-  # 今回は使用しない
-  # before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   def authenticate
     # 登録していないユーザーはログイン画面に戻る
@@ -26,9 +25,9 @@ class ApplicationController < ActionController::Base
     end
 
     def configure_permitted_parameters
-      # 管理者用のカラムを許可
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:email])
-      devise_parameter_sanitizer.permit(:sign_in, keys: [:name, :email])
-      devise_parameter_sanitizer.permit(:account_update, keys: [:role, :name, :email, :password, :password_confirmation])
+      # 管理者登録時に許可するパラメータを設定
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :role])
+      devise_parameter_sanitizer.permit(:sign_in, keys: [:name, :email, :role])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :email, :role])
     end
   end
