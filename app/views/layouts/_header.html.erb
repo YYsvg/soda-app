@@ -1,6 +1,18 @@
 <header>
   <% if current_user.present? %>
-    <div class="col-sm-9"><h3><%= "#{current_user.name} さん専用ノート" %></h3></div>
+    <%= link_to homes_path do %>
+      <div class="col-sm-9">
+        <h3 class="home-btn">
+          <i class="fa-solid fa-house-chimney"></i>
+          <%= "　#{current_user.name} さん専用ノート" %>
+        </h3>
+      </div>
+    <% end %>
+    <div class="col-sm-9 setting">
+          <%= link_to mypage_edit_users_path do %>
+            <h3><i class="fa-regular fa-face-smile" style="color: #212529;"></i></h3>
+          <% end %>
+        </div>
   <% end %>
   <br><br>
 </header>

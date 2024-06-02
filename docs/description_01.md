@@ -1,7 +1,5 @@
 # soda App
-
-
-##### 5/23修正版
+# 最終更新 6/1
 
 ## 主な構成要素
 - `app/`
@@ -46,9 +44,9 @@
       - `_footer.html.erb`                   #トップページのフッターテンプレート
       - `_form.html.erb`                     #トップ・タブ切り替え（支出の入力画面）
       - `_list.html.erb`                     #トップ・タブ切り替え（収入の入力画面）
-      - `_month.html.erb`                    #マイページ・タブ切り替え（月間レポート）
-      - `_month_outcome.html.erb`            # タブ（month）
-      - `_month_income.html.erb`
+
+      - `_month_outcome.html.erb`            # マイページ・月別レポート（month_outcome）
+      - `_month_income.html.erb`             # (month_outcome)
       - `_year.html.erb`                     #マイページ・タブ切り替え（年間レポート）
       - `admin.html.erb`                     #管理者画面のレイアウト(dashboard)
       - `application.html.erb`               #ユーザー画面のレイアウト
@@ -57,6 +55,7 @@
     - `users/`
         - `edit.html.erb`                   #ユーザーの名前を編集
         - `mypage.html.erb`                 #マイページ画面のレイアウト(タブmonth,year)
+        - `month.html.erb`                  #マイページ月別のタブ切り替え画面
     - `wants/`                            　#やりたいことの一覧、追加、編集
 - `config/`                               　#設定ファイル
     - `devise.rb`                             　#管理者ログイン時に名前で認証できる
@@ -89,6 +88,8 @@
 - `docs/`
   - `description.md`          #プロジェクトの詳細説明
   - `description.pdf`         #プロジェクトの詳細説明のPDF
+
+- `ER.md`                     #ER図
 
 
 
@@ -205,6 +206,10 @@ class UsersController < ApplicationController
     @yearly_incomes_total  = @monthly_incomes.sum { |income| income[:total_incomes] }
     @yearly_outcomes_total = @monthly_outcomes.sum { |outcome| outcome[:total_outcomes] }
     @yearly_balance = @yearly_incomes_total - @yearly_outcomes_total
+  end
+
+  def month
+    (mypageと同じ)
   end
 
   def edit

@@ -31,22 +31,9 @@
 ・管理者画面では登録ユーザー名と最終ログイン日時を表示  
 ・やりたいことの予算カラム追加は未実装  
 
-## 画面について
-
-<img src="images/user-login.png" alt="ログイン画面・ユーザー" style="width: 50%;">
-<img src="images/admin-login.png" alt="ログイン画面・管理者" style="width: 50%;">
-<img src="images/top.png" alt="トップページ・ユーザー" style="width: 50%;">
-
-<img src="images/mypage_outcome.png" alt="マイページ支出・ユーザー" style="width: 50%;">
-<img src="images/mypage_income.png" alt="マイページ収入・ユーザー" style="width: 50%;">
-
-
 ## 工夫したところ
 ①Webアプリですがスマホで使用することを想定し、画面を構成  
 ②タブ切り替えで直感的に入力しやすいよう作成  
 ③配色にはベースをクリーム色、クリックは青色、戻るボタンはピンク色をベースに作成  
 ④ユーザーと管理者はUserモデルにroleカラムを追加することで実装  
 
-
-####　最後までご覧いただき、ありがとうございました。
-#### ご指摘等ございましたらご教示いただけますと幸いです。

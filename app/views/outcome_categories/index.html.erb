@@ -20,16 +20,12 @@
           <td><%= outcome_category[:id] %></td>
           <td><%= outcome_category.name %></td>
           <td></td>
-          <td><%= link_to "詳細", outcome_category_path(outcome_category), class: "link-btn show" %></td>
+          <td></td>
           <td><%= link_to "編集", edit_outcome_category_path(outcome_category.id), class:"link-btn" %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <br>
-  <div>
-    <%= link_to "トップページへ戻る", homes_path, class:"submit-color back" %>
-  </div>
 </div>
 
 

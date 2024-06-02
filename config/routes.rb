@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     collection do
       get "mypage",       :to     => "users#mypage"
       get "mypage/edit",  :to     => "users#edit#mypage"
+      get "mypage/month", :to     => "users#month"
       put "mypage",       :to     => "users#update#mypage"
     end
   end

@@ -24,8 +24,11 @@ class OutcomesController < ApplicationController
 
   def destroy
     @outcome = Outcome.find(params[:id])
-    @outcome.destroy
-    redirect_to outcomes_path, notice:"削除しますか？"
+    if @outcome.destroy
+      redirect_to outcomes_path, notice:"削除しました"
+    else
+      redirect_to outcomes_path, alert: "削除に失敗しました: #{@outcome.errors.full_messages.join(', ')}"
+    end
   end
 
   def edit

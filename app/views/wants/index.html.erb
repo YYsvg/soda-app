@@ -22,6 +22,7 @@
             <td><%= want.memo %></td>
             <td><%= image_tag want.image.thumb50.url %>
             <td></td>
+            <td><%= link_to "編集", edit_want_path(want.id), class: "link-btn show" %></td>
             <td><%= link_to "削除", want_path(want.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class:"link-btn show" %></td>
             <td></td>
           </tr>
@@ -34,11 +35,6 @@
   <div>
     <%= link_to "新規作成", :new_want, class:"link-btn new" %>
   </div>
-  <br><br><br><br>
-  <div>
-    <%= link_to "トップページへ戻る", homes_path, class:"submit-color back" %>
-  </div>
-</div>
 
 
 

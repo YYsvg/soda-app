@@ -2,32 +2,22 @@
   <div class="mycard mx-auto"  style="width: 1000px;">
     <div class="card-body col-sm-9">
       <ul class="tab-list list-unstyled">
-            <li class="tab tab-active">
-              <%= "月別レポート" %>
-            </li>
-            <li class="tab">
-              <%= "年間レポート" %>
-            </li>
+        <li class="tab tab-active">
+          <%= link_to "月別レポート", mypage_month_users_path %>
+        </li>
+        <li class="tab">
+          <%= "年間レポート" %>
+        </li>
       </ul>
       <h4 class="card-title"></h4><br>
       <h5 class="card-text">
+
       <div>
-        <h2><%= "#{@year}年#{@month}月" %></h2>
-        <h3>
-          <%= "支出　#{number_to_currency(@current_month_outcome_value, unit: "",separator: '.', delimiter: ',', precision: 0)} 円　" %> | <%= "　収入　#{number_to_currency(@current_month_income_value, unit: "", separator: '.', delimiter: ',', precision: 0)} 円" %>
-        </h3>
+        <div class="tabbox box-show">
       </div>
-      <div>
-        <div class="tabbox box-show ">
-          <%= render 'layouts/month' %>
-        </div>
-        <div class="tabbox">
-          <%= render 'layouts/year' %>
-        </div>
+      <div class="tabbox">
+        <%= render 'layouts/year' %>
       </div>
     </div>
   </div>
-<br>
-<div>
-  <%= link_to "トップページへ", homes_path, class:"submit-color back" %>
-</div><br><br>
+</div>

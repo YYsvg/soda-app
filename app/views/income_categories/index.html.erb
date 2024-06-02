@@ -21,19 +21,13 @@
           <td><%= income_category[:id] %></td>
           <td><%= income_category.name %></td>
           <td></td>
-          <td><%= link_to "詳細", income_category_path(income_category), class: "link-btn show" %></td>
+          <td></td>
           <td><%= link_to "編集", edit_income_category_path(income_category.id), class:"link-btn" %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
   <br>
-  <div>
-    <%= link_to "トップページへ", homes_path, class:"submit-color back" %>
-  </div>
-
-
-
 </div>
 
 

@@ -1,25 +1,31 @@
-
 <div class="texts-wrapper">
   <div class="contents-title text-center">
+
+      <div>
+          <h2><%= "#{@year}年#{@month}月" %></h2>
+          <h3>
+            <%= "支出　#{number_to_currency(@current_month_outcome_value, unit: "",separator: '.', delimiter: ',', precision: 0)} 円　" %> | <%= "　収入　#{number_to_currency(@current_month_income_value, unit: "", separator: '.', delimiter: ',', precision: 0)} 円" %>
+          </h3>
+      </div>
+
     <div class="row">
-      <% @monthly_incomes.each do |monthly_data| %>
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card h-70">
-            <div class="card-body align-items-center">
-                <br class="card-title">
-                  <h2><%= monthly_data[:month] %></h2></br>
-                  <h3>合計　　<%= number_to_currency(monthly_data[:total_incomes], unit: "", separator: ".", delimiter: ",", precision:0) %>円
-                </h3>
-            <br>
-            <ul>
-              <% monthly_data[:category_incomes].each do |category_name, category_total| %>
-                <li class="category_list"><%= category_name %>　<%= number_to_currency(category_total, unit: "", separator: ".", delimiter: ",", precision:0) %>円</li>
-              <% end %>
-            </ul>
+        <% @monthly_incomes.each do |monthly_data| %>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card h-70">
+              <div class="card-body align-items-center">
+                <div class="card-title">
+                  <h2><%= monthly_data[:month] %></h2>
+                  <h3>合計　　<%= number_to_currency(monthly_data[:total_incomes], unit: "", separator: ".", delimiter: ",", precision:0) %>円</h3>
+                </div>
+                  <ul>
+                    <% monthly_data[:category_incomes].each do |category_name, category_total| %>
+                      <li class="category_list"><%= category_name %>　<%= number_to_currency(category_total, unit: "", separator: ".", delimiter: ",", precision:0) %>円</li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      <% end %>
+        <% end %>
     </div>
   </div>
 </div>

@@ -6,8 +6,8 @@
   <h1><%= pagename %></h1>
 
   <%= form_with url: mypage_users_path, local: true, method: :put do |f| %>
-    <div class="box-name center">
-      <label>なまえを変更できます</label><%= f.text_field :name, placeholder: "名前を入力", class:"home" %>
+    <div class="box-name">
+      <h3><label>なまえを変更できます</label></h3><%= f.text_field :name, placeholder: "名前を入力", class:"home" %>
       <p><%= "現在のなまえ：#{current_user.name}" %></p>
     </div>
 
@@ -16,8 +16,7 @@
   <div>
     <%= f.submit "保存", class:"link-btn name name-btn" %>
   </div>
- <% end %><br><br><br>
- <%= link_to "トップページへ", homes_path, class:"submit-color back" %>
+ <% end %>
 </div>
 </div>
 

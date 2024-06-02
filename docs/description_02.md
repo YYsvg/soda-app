@@ -70,7 +70,44 @@
 
 ``````
 
-### /app/views/layouts/_month.html.erb
+
+
+### /app/views/users/mypage.html.erb
+#### マイページ集計レポート画面
+``````
+<div class="container">
+  <div class="mycard mx-auto"  style="width: 1000px;">
+    <div class="card-body col-sm-9">
+      <ul class="tab-list list-unstyled">
+            <li class="tab tab-active">
+              <%= link_to "月別レポート", mypage_month_users_path %>
+            </li>
+            <li class="tab">
+              <%= "年間レポート" %>
+            </li>
+      </ul>
+      <h4 class="card-title"></h4><br>
+      <h5 class="card-text">
+
+      <div>
+        <div class="tabbox box-show">
+        </div>
+        <div class="tabbox">
+          <%= render 'layouts/year' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div>
+  <%= link_to "トップページへ", homes_path, class:"submit-color back" %>
+</div><br><br>
+``````
+
+
+
+### /app/views/users/month.html.erb
 #### マイページ・月毎の集計レポート画面
 ``````
 <div class="container">
@@ -103,15 +140,24 @@
 ### /app/views/layouts/_month_outcome.html.erb
 #### 月ごとの支出画面
 ``````
+
 <div class="texts-wrapper">
   <div class="contents-title text-center">
+
+      <div>
+          <h2><%= "#{@year}年#{@month}月" %></h2>
+          <h3>
+            <%= "支出　#{number_to_currency(@current_month_outcome_value, unit: "",separator: '.', delimiter: ',', precision: 0)} 円　" %> | <%= "　収入　#{number_to_currency(@current_month_income_value, unit: "", separator: '.', delimiter: ',', precision: 0)} 円" %>
+          </h3>
+      </div>
+
     <div class="row">
       <% @monthly_outcomes.each do |monthly_data| %>
         <div class="col-12 col-md-6 col-lg-4">
           <div class="card h-70">
             <div class="card-body align-items-center">
-                <br class="card-title">
-                  <h2><%= monthly_data[:month] %></h2></br>
+                <div class="card-title">
+                  <h2><%= monthly_data[:month] %></h2></div>
                   <h3>合計　　<%= number_to_currency(monthly_data[:total_outcomes], unit: "", separator: ".", delimiter: ",", precision:0) %>円
                 </h3>
             <br>
@@ -176,6 +222,4 @@
 
 
 ``````
-
-
-#### 最後までご覧いただき、ありがとうございました。
+##### 最後までご覧いただきありがとうございました。

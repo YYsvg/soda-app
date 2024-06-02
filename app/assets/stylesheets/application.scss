@@ -189,10 +189,17 @@ body {
 .submit-color:hover,
 .link-btn:hover,
 .logout-color:hover,
-.admin-logout:hover {
+.admin-logout:hover{
   text-decoration: none;
   color:rgba(152, 91, 91, 0.5)
 }
+.home-btn:hover{
+  text-decoration: none;
+}
+.home-btn {
+    color: #212529;
+}
+
 
 // 画面ごと
 .show {
@@ -269,4 +276,8 @@ body {
 }
 .mycard {
   width: 800px;
+}
+.setting {
+  text-align: right;
+  color: #212529;
 }

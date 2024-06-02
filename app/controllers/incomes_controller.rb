@@ -24,8 +24,11 @@ class IncomesController < ApplicationController
 
   def destroy
     @income = Income.find(params[:id])
-    @income.destroy
-    redirect_to incomes_path, notice:"削除しますか？"
+    if @income.destroy
+      redirect_to incomes_path, notice:"削除しますか？"
+    else
+      redirect_to incomes_path, alert: "削除に失敗しました: #{@income.errors.full_messages.join(',')}"
+    end
   end
 
   def edit
